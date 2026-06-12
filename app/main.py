@@ -101,6 +101,36 @@ div[data-testid="stCheckbox"] {
     padding: 4px 8px !important;
     margin-top: 2px !important;
 }
+
+/* Responsive item grid: 4 cols on PC, 2 cols on mobile */
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+    .item-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+}
+
+/* Grid cell styling */
+.grid-cell {
+    text-align: center;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    padding: 4px;
+    overflow: hidden;
+}
+.grid-cell img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -311,12 +341,12 @@ if st.session_state.phase == 'cold_start':
 
     cs_df = st.session_state.cold_start_df
 
-    # Render items in 4-column grid
+    # Render items in 2-column grid (mobile-friendly)
     items_list = list(cs_df.iterrows())
     current_liked = set(st.session_state.liked_cs)
-    for i in range(0, len(items_list), 4):
-        cols = st.columns(4)
-        for col_widget, (_, row) in zip(cols, items_list[i:i+4]):
+    for i in range(0, len(items_list), 2):
+        cols = st.columns(2)
+        for col_widget, (_, row) in zip(cols, items_list[i:i+2]):
             with col_widget:
                 actual_idx = int(row.name)
                 img_path = row.get(COL_PATH, '')
@@ -401,9 +431,9 @@ if st.session_state.phase == 'recommendation':
     a_df = st.session_state.recs_a_df
     if a_df is not None:
         items = list(a_df.iterrows())
-        for i in range(0, len(items), 4):
-            cols = st.columns(4)
-            for col_widget, (_, row) in zip(cols, items[i:i+4]):
+        for i in range(0, len(items), 2):
+            cols = st.columns(2)
+            for col_widget, (_, row) in zip(cols, items[i:i+2]):
                 with col_widget:
                     render_item(
                         image_path=row.get(COL_PATH, ''),
@@ -417,9 +447,9 @@ if st.session_state.phase == 'recommendation':
     b_df = st.session_state.recs_b_df
     if b_df is not None:
         items = list(b_df.iterrows())
-        for i in range(0, len(items), 4):
-            cols = st.columns(4)
-            for col_widget, (_, row) in zip(cols, items[i:i+4]):
+        for i in range(0, len(items), 2):
+            cols = st.columns(2)
+            for col_widget, (_, row) in zip(cols, items[i:i+2]):
                 with col_widget:
                     render_item(
                         image_path=row.get(COL_PATH, ''),
@@ -478,9 +508,9 @@ if st.session_state.phase == 'evaluation':
 
     if a_df is not None:
         items = list(a_df.iterrows())
-        for i in range(0, len(items), 4):
-            cols = st.columns(4)
-            for col_widget, (_, row) in zip(cols, items[i:i+4]):
+        for i in range(0, len(items), 2):
+            cols = st.columns(2)
+            for col_widget, (_, row) in zip(cols, items[i:i+2]):
                 with col_widget:
                     actual_idx = int(row.name)
                     checked = render_item(
@@ -506,9 +536,9 @@ if st.session_state.phase == 'evaluation':
 
     if b_df is not None:
         items = list(b_df.iterrows())
-        for i in range(0, len(items), 4):
-            cols = st.columns(4)
-            for col_widget, (_, row) in zip(cols, items[i:i+4]):
+        for i in range(0, len(items), 2):
+            cols = st.columns(2)
+            for col_widget, (_, row) in zip(cols, items[i:i+2]):
                 with col_widget:
                     actual_idx = int(row.name)
                     checked = render_item(
