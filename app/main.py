@@ -144,14 +144,19 @@ div[data-testid="stCheckbox"] {
     div[data-testid="stHorizontalBlock"] {
         flex-direction: row !important;
         flex-wrap: nowrap !important; /* FORCE side-by-side, no wrapping */
-        gap: 0 !important; /* Remove gap that causes overflow */
+        gap: 10px !important; /* Match the gap of HTML image grid (10px) */
     }
     /* Force columns to split evenly without overflowing */
     div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
-        width: 50% !important;
-        flex: 1 1 50% !important;
+        width: calc(50% - 5px) !important;
+        flex: 1 1 calc(50% - 5px) !important;
         min-width: 0 !important; /* Allow shrinking */
-        padding: 0 4px !important; /* Reduce padding to fit */
+        padding: 0 !important; /* Remove native padding */
+    }
+    /* Center the checkboxes inside the columns so they align perfectly under images */
+    div[data-testid="stHorizontalBlock"] > div[data-testid="column"] div[data-testid="stCheckbox"] {
+        display: flex;
+        justify-content: center;
     }
 }
 </style>
