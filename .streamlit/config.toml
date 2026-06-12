@@ -1,0 +1,3 @@
+[theme]
+# Mengubah aksen warna default Streamlit menjadi Biru/Ungu khas tema banner
+primaryColor="#2575fc"
