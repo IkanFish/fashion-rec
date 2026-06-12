@@ -102,7 +102,19 @@ def ensure_data_ready():
     """
     base = _get_base_dir()
 
-    # Define required files and their zip sources
+    # Check if we're in local dev mode (dev paths exist)
+    dev_features_exist = (
+        (base / 'features' / 'exp3_partial_unfreeze' / 'vgg19_features_exp3.npy').exists() and
+        (base / 'baseline_text_cbf' / 'evaluation' / 'onehot_filtered_matrix.npy').exists()
+    )
+    dev_images_exist = (base / 'dataset' / 'In-shop Clothes Retrieval Benchmark' / 'Img').exists()
+    dev_dataset_exist = (base / 'dataset' / 'master_dataset.csv').exists()
+
+    # If all dev paths exist, we're in local dev mode — skip download
+    if dev_features_exist and dev_images_exist and dev_dataset_exist:
+        return  # Local development mode
+
+    # Cloud deployment mode — check deploy paths
     required_files = [
         (base / 'dataset' / 'master_dataset.csv', 'deploy_meta.zip', base / 'dataset'),
         (base / 'features' / 'vgg19_features_exp3.npy', 'deploy_features.zip', base / 'features'),
@@ -118,13 +130,10 @@ def ensure_data_ready():
     # Check images directory (deploy archive extracts to base/img/)
     img_dir = base / 'img'
     if not img_dir.exists() or not any(img_dir.rglob('*.jpg')):
-        # Also check dev path
-        img_dir_dev = base / 'dataset' / 'In-shop Clothes Retrieval Benchmark' / 'Img'
-        if not img_dir_dev.exists() or not any(img_dir_dev.rglob('*.jpg')):
-            missing_zips.add(('deploy_images.zip', base))
+        missing_zips.add(('deploy_images.zip', base))
 
     if not missing_zips:
-        return  # All data present
+        return  # All deploy data present
 
     # Need to download — show progress UI
     progress_container = st.container()
@@ -156,10 +165,8 @@ def ensure_data_ready():
             st.stop()
 
     if not img_dir.exists() or not any(img_dir.rglob('*.jpg')):
-        img_dir_dev = base / 'dataset' / 'In-shop Clothes Retrieval Benchmark' / 'Img'
-        if not img_dir_dev.exists() or not any(img_dir_dev.rglob('*.jpg')):
-            st.error(f"Image verification failed: no .jpg files found in {img_dir} or {img_dir_dev}")
-            st.stop()
+        st.error(f"Image verification failed: no .jpg files found in {img_dir}")
+        st.stop()
 
     # Clear progress UI and continue (no rerun needed)
     progress_container.empty()
