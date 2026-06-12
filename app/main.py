@@ -132,15 +132,11 @@ div[data-testid="stCheckbox"] {
     border-radius: 4px;
 }
 
-/* Force st.columns to stack vertically on mobile */
+/* Constrain image width on mobile to prevent stretching */
 @media (max-width: 768px) {
-    div[data-testid="column"] {
-        width: 100% !important;
-        flex: 1 1 100% !important;
-        min-width: 100% !important;
-    }
-    div[data-testid="stHorizontalBlock"] {
-        flex-wrap: wrap !important;
+    img {
+        max-width: 150px !important;
+        height: auto !important;
     }
 }
 </style>
