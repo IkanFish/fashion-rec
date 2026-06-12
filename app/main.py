@@ -8,6 +8,8 @@ import os
 import sys
 import uuid
 import random
+import base64
+from io import BytesIO
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -132,32 +134,10 @@ div[data-testid="stCheckbox"] {
     border-radius: 4px;
 }
 
-/* Force 2-column layout on mobile for item grids */
+/* Mobile: prevent horizontal scroll */
 @media (max-width: 768px) {
-    /* Prevent horizontal scroll / right-side whitespace */
     html, body, [data-testid="stAppViewContainer"] {
         overflow-x: hidden !important;
-    }
-
-    /* Parent flex container: force row layout ONLY for 2-column blocks
-       (skip 3-column blocks like preference buttons) */
-    div[data-testid="stHorizontalBlock"]:not(:has(> div[data-testid="column"]:nth-child(3))) {
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 0.5rem !important;
-    }
-    /* Child columns in 2-column blocks: force 50% width */
-    div[data-testid="stHorizontalBlock"]:not(:has(> div[data-testid="column"]:nth-child(3)))
-    > div[data-testid="column"] {
-        width: calc(50% - 0.25rem) !important;
-        flex: 0 0 calc(50% - 0.25rem) !important;
-        min-width: calc(50% - 0.25rem) !important;
-        max-width: calc(50% - 0.25rem) !important;
-        box-sizing: border-box !important;
-    }
-    img {
-        max-width: 100% !important;
-        height: auto !important;
     }
 }
 </style>
@@ -200,9 +180,49 @@ def load_image_cached(path: str, size_w: int = 200, size_h: int = 200) -> Image.
     return Image.new('RGB', size, (230, 230, 230))
 
 
+def pil_to_base64(img: Image.Image) -> str:
+    """Convert PIL Image to base64 JPEG string."""
+    buf = BytesIO()
+    img.save(buf, format='JPEG', quality=85)
+    return base64.b64encode(buf.getvalue()).decode()
+
+
+def render_items_grid_html(items_data: list, show_numbers: bool = False):
+    """Render items as a pure HTML/CSS grid — immune to Streamlit's column stacking.
+    items_data: list of (image_path, category) tuples.
+    """
+    cells = []
+    for i, (img_path, category) in enumerate(items_data, 1):
+        img = load_image_cached(img_path, *IMG_DISPLAY_SIZE)
+        b64 = pil_to_base64(img)
+        cat_display = category.replace('_', ' ').title() if category else ''
+        badge = (
+            f'<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.55);'
+            f'color:#fff;border-radius:50%;width:24px;height:24px;display:flex;'
+            f'align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">'
+            f'{i}</div>'
+        ) if show_numbers else ''
+        cells.append(
+            f'<div style="position:relative;text-align:center;background:#fff;'
+            f'border-radius:10px;border:1px solid #eee;padding:6px;overflow:hidden;">'
+            f'{badge}'
+            f'<img src="data:image/jpeg;base64,{b64}" '
+            f'style="width:100%;height:auto;border-radius:6px;display:block;">'
+            f'<div style="font-size:0.72rem;color:#666;margin-top:3px;">{cat_display}</div>'
+            f'</div>'
+        )
+    html = (
+        '<div style="display:grid;grid-template-columns:repeat(2,1fr);'
+        'gap:10px;margin-bottom:0.8rem;">'
+        + ''.join(cells)
+        + '</div>'
+    )
+    st.markdown(html, unsafe_allow_html=True)
+
+
 def render_item(image_path: str, category: str = '', show_checkbox: bool = False,
                 cb_key: str = '', cb_label: str = 'Pilih'):
-    """Render a single item card with optional checkbox."""
+    """Render a single item card with optional checkbox (legacy, for non-grid use)."""
     img = load_image_cached(image_path, *IMG_DISPLAY_SIZE)
     st.image(img, use_container_width=True)
     if category:
@@ -370,29 +390,22 @@ if st.session_state.phase == 'cold_start':
 
     cs_df = st.session_state.cold_start_df
 
-    # Render items in 2-column grid (mobile-friendly)
+    # Render items as pure HTML grid (bypasses Streamlit mobile column stacking)
     items_list = list(cs_df.iterrows())
+    items_data = [(row.get(COL_PATH, ''), row.get(COL_CATEGORY, '')) for _, row in items_list]
+    render_items_grid_html(items_data, show_numbers=True)
+
+    # Checkboxes below grid — numbered to match images
+    st.markdown("**Centang item yang kamu suka:**")
     current_liked = set(st.session_state.liked_cs)
-    for i in range(0, len(items_list), 2):
-        cols = st.columns(2)
-        for col_widget, (_, row) in zip(cols, items_list[i:i+2]):
-            with col_widget:
-                actual_idx = int(row.name)
-                img_path = row.get(COL_PATH, '')
-                category = row.get(COL_CATEGORY, '')
-
-                checked = render_item(
-                    image_path=img_path,
-                    category=category,
-                    show_checkbox=True,
-                    cb_key=f"cs_{actual_idx}",
-                    cb_label="❤️ Suka",
-                )
-
-                if checked:
-                    current_liked.add(actual_idx)
-                else:
-                    current_liked.discard(actual_idx)
+    for i, (_, row) in enumerate(items_list, 1):
+        actual_idx = int(row.name)
+        cat = row.get(COL_CATEGORY, '').replace('_', ' ').title()
+        checked = st.checkbox(f"❤️ Item {i} — {cat}", key=f"cs_{actual_idx}")
+        if checked:
+            current_liked.add(actual_idx)
+        else:
+            current_liked.discard(actual_idx)
 
     st.session_state.liked_cs = list(current_liked)
 
@@ -455,35 +468,21 @@ if st.session_state.phase == 'recommendation':
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Rekomendasi A (grid 4 cols) ──────────
+    # ── Rekomendasi A (pure HTML grid) ──────────
     st.markdown("### Rekomendasi A")
     a_df = st.session_state.recs_a_df
     if a_df is not None:
-        items = list(a_df.iterrows())
-        for i in range(0, len(items), 2):
-            cols = st.columns(2)
-            for col_widget, (_, row) in zip(cols, items[i:i+2]):
-                with col_widget:
-                    render_item(
-                        image_path=row.get(COL_PATH, ''),
-                        category=row.get(COL_CATEGORY, ''),
-                    )
+        items_data = [(row.get(COL_PATH, ''), row.get(COL_CATEGORY, '')) for _, row in a_df.iterrows()]
+        render_items_grid_html(items_data)
 
     st.markdown("---")
 
-    # ── Rekomendasi B (grid 4 cols) ──────────
+    # ── Rekomendasi B (pure HTML grid) ──────────
     st.markdown("### Rekomendasi B")
     b_df = st.session_state.recs_b_df
     if b_df is not None:
-        items = list(b_df.iterrows())
-        for i in range(0, len(items), 2):
-            cols = st.columns(2)
-            for col_widget, (_, row) in zip(cols, items[i:i+2]):
-                with col_widget:
-                    render_item(
-                        image_path=row.get(COL_PATH, ''),
-                        category=row.get(COL_CATEGORY, ''),
-                    )
+        items_data = [(row.get(COL_PATH, ''), row.get(COL_CATEGORY, '')) for _, row in b_df.iterrows()]
+        render_items_grid_html(items_data)
 
     st.markdown("---")
     st.markdown("### Mana yang lebih kamu sukai?")
@@ -530,57 +529,45 @@ if st.session_state.phase == 'evaluation':
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Rekomendasi A (grid with checkboxes) ─
+    # ── Rekomendasi A (pure HTML grid + checkboxes) ─
     st.markdown("### Rekomendasi A")
     a_df = st.session_state.recs_a_df
     liked_a = set(st.session_state.liked_a)
 
     if a_df is not None:
-        items = list(a_df.iterrows())
-        for i in range(0, len(items), 2):
-            cols = st.columns(2)
-            for col_widget, (_, row) in zip(cols, items[i:i+2]):
-                with col_widget:
-                    actual_idx = int(row.name)
-                    checked = render_item(
-                        image_path=row.get(COL_PATH, ''),
-                        category=row.get(COL_CATEGORY, ''),
-                        show_checkbox=True,
-                        cb_key=f"eval_a_{actual_idx}",
-                        cb_label="Suka",
-                    )
-                    if checked:
-                        liked_a.add(actual_idx)
-                    else:
-                        liked_a.discard(actual_idx)
+        a_items = list(a_df.iterrows())
+        items_data = [(row.get(COL_PATH, ''), row.get(COL_CATEGORY, '')) for _, row in a_items]
+        render_items_grid_html(items_data, show_numbers=True)
+        for i, (_, row) in enumerate(a_items, 1):
+            actual_idx = int(row.name)
+            cat = row.get(COL_CATEGORY, '').replace('_', ' ').title()
+            checked = st.checkbox(f"Suka Item {i} — {cat}", key=f"eval_a_{actual_idx}")
+            if checked:
+                liked_a.add(actual_idx)
+            else:
+                liked_a.discard(actual_idx)
 
     st.session_state.liked_a = list(liked_a)
 
     st.markdown("---")
 
-    # ── Rekomendasi B (grid with checkboxes) ─
+    # ── Rekomendasi B (pure HTML grid + checkboxes) ─
     st.markdown("### Rekomendasi B")
     b_df = st.session_state.recs_b_df
     liked_b = set(st.session_state.liked_b)
 
     if b_df is not None:
-        items = list(b_df.iterrows())
-        for i in range(0, len(items), 2):
-            cols = st.columns(2)
-            for col_widget, (_, row) in zip(cols, items[i:i+2]):
-                with col_widget:
-                    actual_idx = int(row.name)
-                    checked = render_item(
-                        image_path=row.get(COL_PATH, ''),
-                        category=row.get(COL_CATEGORY, ''),
-                        show_checkbox=True,
-                        cb_key=f"eval_b_{actual_idx}",
-                        cb_label="Suka",
-                    )
-                    if checked:
-                        liked_b.add(actual_idx)
-                    else:
-                        liked_b.discard(actual_idx)
+        b_items = list(b_df.iterrows())
+        items_data = [(row.get(COL_PATH, ''), row.get(COL_CATEGORY, '')) for _, row in b_items]
+        render_items_grid_html(items_data, show_numbers=True)
+        for i, (_, row) in enumerate(b_items, 1):
+            actual_idx = int(row.name)
+            cat = row.get(COL_CATEGORY, '').replace('_', ' ').title()
+            checked = st.checkbox(f"Suka Item {i} — {cat}", key=f"eval_b_{actual_idx}")
+            if checked:
+                liked_b.add(actual_idx)
+            else:
+                liked_b.discard(actual_idx)
 
     st.session_state.liked_b = list(liked_b)
 
