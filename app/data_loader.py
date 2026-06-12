@@ -6,6 +6,7 @@ On subsequent runs, uses cached data.
 """
 import os
 import zipfile
+import tempfile
 import requests
 import streamlit as st
 from pathlib import Path
@@ -57,13 +58,13 @@ def _download_and_extract(url: str, extract_to: Path, zip_name: str) -> bool:
         total = int(response.headers.get('content-length', 0))
         downloaded = 0
 
-        # Save to temp file
-        temp_path = extract_to / f'_temp_{zip_name}'
-        extract_to.mkdir(parents=True, exist_ok=True)
+        # Save to system temp file (avoids directory creation issues)
+        fd, temp_str = tempfile.mkstemp(suffix='.zip')
+        temp_path = Path(temp_str)
 
         progress_bar = st.progress(0)
 
-        with open(temp_path, 'wb') as f:
+        with os.fdopen(fd, 'wb') as f:
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
                 downloaded += len(chunk)
@@ -72,21 +73,24 @@ def _download_and_extract(url: str, extract_to: Path, zip_name: str) -> bool:
 
         progress_bar.empty()
 
+        # Ensure extract target directory exists
+        extract_to.mkdir(parents=True, exist_ok=True)
+
         # Extract
         st.info(f"Extracting {zip_name}...")
         with zipfile.ZipFile(temp_path, 'r') as zf:
             zf.extractall(extract_to)
 
         # Clean up temp file
-        temp_path.unlink()
+        temp_path.unlink(missing_ok=True)
 
         st.success(f"{zip_name} ready!")
         return True
 
     except Exception as e:
         st.error(f"Failed to download {zip_name}: {e}")
-        if temp_path.exists():
-            temp_path.unlink()
+        if 'temp_path' in locals() and temp_path.exists():
+            temp_path.unlink(missing_ok=True)
         return False
 
 
