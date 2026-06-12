@@ -98,6 +98,7 @@ def ensure_data_ready():
     """
     Check if all required data files exist. If not, download from GitHub Releases.
     Call this once at app startup before loading features/images.
+    Does NOT use st.rerun() — continues execution after download completes.
     """
     base = _get_base_dir()
 
@@ -122,24 +123,39 @@ def ensure_data_ready():
     if not missing_zips:
         return  # All data present
 
-    # Need to download
-    st.markdown("## ⏳ Preparing Data")
-    st.markdown("First-time setup: downloading data files...")
+    # Need to download — show progress UI
+    progress_container = st.container()
+    with progress_container:
+        st.markdown("## ⏳ Preparing Data")
+        st.markdown("First-time setup: downloading data files...")
 
-    for zip_name, extract_to in missing_zips:
-        url = _get_release_url(zip_name)
-        if not url:
-            st.error(
-                "GitHub Release configuration missing. "
-                "Add `[github]` section to `.streamlit/secrets.toml` "
-                "with `owner`, `repo`, and `release_tag`."
-            )
+        for zip_name, extract_to in missing_zips:
+            url = _get_release_url(zip_name)
+            if not url:
+                st.error(
+                    "GitHub Release configuration missing. "
+                    "Add `[github]` section to `.streamlit/secrets.toml` "
+                    "with `owner`, `repo`, and `release_tag`."
+                )
+                st.stop()
+
+            success = _download_and_extract(url, extract_to, zip_name)
+            if not success:
+                st.stop()
+
+        st.markdown("---")
+        st.success("All data ready! Loading app...")
+
+    # Verify files exist after extraction
+    for check_path, _, _ in required_files:
+        if not check_path.exists():
+            st.error(f"Data verification failed: {check_path} not found after extraction")
             st.stop()
 
-        success = _download_and_extract(url, extract_to, zip_name)
-        if not success:
-            st.stop()
+    if not img_dir.exists() or not any(img_dir.rglob('*.jpg')):
+        st.error("Image verification failed: no .jpg files found after extraction")
+        st.stop()
 
-    st.markdown("---")
-    st.success("All data ready! Loading app...")
-    st.rerun()
+    # Clear progress UI and continue (no rerun needed)
+    progress_container.empty()
+
