@@ -17,6 +17,7 @@ MASTER_CSV = os.path.join(DATASET_DIR, 'master_dataset.csv')
 _img_deploy = os.path.join(BASE_DIR, 'img')                  # extracted from deploy archive
 _img_dev    = os.path.join(DATASET_DIR, 'In-shop Clothes Retrieval Benchmark', 'Img')  # original dataset
 IMG_ROOT = _img_deploy if os.path.isdir(_img_deploy) else _img_dev
+IS_DEV_ENV = (IMG_ROOT == _img_dev)
 
 # ── Feature Files (auto-detect local dev vs cloud deployment) ──
 # CNN: VGG19 Experiment 3 (Partial Unfreeze) — best performing model

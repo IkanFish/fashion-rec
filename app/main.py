@@ -20,6 +20,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from config import (
     IMG_ROOT, COL_PATH, COL_CATEGORY,
     COLD_START_K, REC_TOP_N, IMG_DISPLAY_SIZE, SHEET_NAME,
+    IS_DEV_ENV
 )
 from engine import DualRecommenderSystem
 from sheets import submit_to_sheets, build_submission_row
@@ -686,4 +687,20 @@ if st.session_state.phase == 'done':
     </div>
     """, unsafe_allow_html=True)
     st.markdown("---")
+
+    if IS_DEV_ENV:
+        with st.expander("🔍 Detail Sesi (Debug)"):
+            st.json({
+                'session_id' : st.session_state.session_id,
+                'demographics': {
+                    'age': st.session_state.demo_age,
+                    'gender': st.session_state.demo_gender,
+                    'frequency': st.session_state.demo_frequency,
+                },
+                'ab_mapping' : st.session_state.ab_mapping,
+                'preference' : st.session_state.preference,
+                'n_liked_cs' : len(st.session_state.liked_cs),
+                'n_liked_a'  : len(st.session_state.liked_a),
+                'n_liked_b'  : len(st.session_state.liked_b),
+            })
 
