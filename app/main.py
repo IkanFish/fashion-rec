@@ -142,17 +142,18 @@ div[data-testid="stCheckbox"] {
 
     /* Prevent Streamlit from stacking columns vertically, but allow wrap for 3+ columns */
     div[data-testid="stHorizontalBlock"] {
+        display: flex !important;
         flex-direction: row !important;
-        flex-wrap: wrap !important; /* MUST wrap so 3-column layout doesn't overflow horizontally */
-        gap: 10px !important; /* Force a strict, small gap */
+        flex-wrap: wrap !important;
+        gap: 2% !important; /* Use percentage gap for safer fluid layout */
     }
     
-    /* Force columns to split evenly without overflowing */
-    div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
-        width: calc(50% - 5px) !important;
-        flex: 0 0 calc(50% - 5px) !important; /* Strict sizing, no growing to prevent overflow */
+    /* Force immediate children of horizontal block to split evenly */
+    div[data-testid="stHorizontalBlock"] > div {
+        width: 49% !important;
+        flex: 0 0 49% !important;
         min-width: 0 !important;
-        padding: 0 !important; /* Remove Streamlit's internal padding that causes overflow */
+        padding: 0 !important;
         margin: 0 !important;
     }
 }
@@ -402,26 +403,29 @@ if st.session_state.phase == 'cold_start':
 
     cs_df = st.session_state.cold_start_df
 
-    # Render using 2 main Streamlit columns
-    # Odd items left, Even items right. Ensures checkbox is perfectly aligned under image.
+    # Render using st.columns(2) PER PAIR. 
+    # Ensures logical order (1, 2, 3, 4) even if mobile browser forces stacking.
     items_list = list(cs_df.iterrows())
     current_liked = set(st.session_state.liked_cs)
 
-    col1, col2 = st.columns(2)
-    for i, (_, row) in enumerate(items_list, 1):
-        target_col = col1 if i % 2 != 0 else col2
-        with target_col:
-            actual_idx = int(row.name)
-            img_path = row.get(COL_PATH, '')
-            cat = row.get(COL_CATEGORY, '')
-            
-            render_single_html_card(img_path, cat, number=i)
-            
-            checked = st.checkbox("❤️ Suka", key=f"cs_{actual_idx}")
-            if checked:
-                current_liked.add(actual_idx)
-            else:
-                current_liked.discard(actual_idx)
+    for i in range(0, len(items_list), 2):
+        pair = items_list[i:i+2]
+        cols = st.columns(2 if len(pair) == 2 else 1)
+        for col_idx, (col, (_, row)) in enumerate(zip(cols, pair)):
+            with col:
+                actual_idx = int(row.name)
+                img_path = row.get(COL_PATH, '')
+                cat = row.get(COL_CATEGORY, '')
+                
+                # number is i + col_idx + 1
+                item_number = i + col_idx + 1
+                render_single_html_card(img_path, cat, number=item_number)
+                
+                checked = st.checkbox("❤️ Suka", key=f"cs_{actual_idx}")
+                if checked:
+                    current_liked.add(actual_idx)
+                else:
+                    current_liked.discard(actual_idx)
 
     st.session_state.liked_cs = list(current_liked)
 
@@ -488,11 +492,13 @@ if st.session_state.phase == 'recommendation':
     st.markdown("### Rekomendasi A")
     a_df = st.session_state.recs_a_df
     if a_df is not None:
-        col1, col2 = st.columns(2)
-        for i, (_, row) in enumerate(a_df.iterrows(), 1):
-            target_col = col1 if i % 2 != 0 else col2
-            with target_col:
-                render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''))
+        a_items = list(a_df.iterrows())
+        for i in range(0, len(a_items), 2):
+            pair = a_items[i:i+2]
+            cols = st.columns(2 if len(pair) == 2 else 1)
+            for col, (_, row) in zip(cols, pair):
+                with col:
+                    render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''))
 
     st.markdown("---")
 
@@ -500,11 +506,13 @@ if st.session_state.phase == 'recommendation':
     st.markdown("### Rekomendasi B")
     b_df = st.session_state.recs_b_df
     if b_df is not None:
-        col1, col2 = st.columns(2)
-        for i, (_, row) in enumerate(b_df.iterrows(), 1):
-            target_col = col1 if i % 2 != 0 else col2
-            with target_col:
-                render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''))
+        b_items = list(b_df.iterrows())
+        for i in range(0, len(b_items), 2):
+            pair = b_items[i:i+2]
+            cols = st.columns(2 if len(pair) == 2 else 1)
+            for col, (_, row) in zip(cols, pair):
+                with col:
+                    render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''))
 
     st.markdown("---")
     st.markdown("### Mana yang lebih kamu sukai?")
@@ -557,18 +565,21 @@ if st.session_state.phase == 'evaluation':
     liked_a = set(st.session_state.liked_a)
 
     if a_df is not None:
-        col1, col2 = st.columns(2)
-        for i, (_, row) in enumerate(a_df.iterrows(), 1):
-            target_col = col1 if i % 2 != 0 else col2
-            with target_col:
-                actual_idx = int(row.name)
-                render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''), number=i)
-                
-                checked = st.checkbox("Suka", key=f"eval_a_{actual_idx}")
-                if checked:
-                    liked_a.add(actual_idx)
-                else:
-                    liked_a.discard(actual_idx)
+        a_items = list(a_df.iterrows())
+        for i in range(0, len(a_items), 2):
+            pair = a_items[i:i+2]
+            cols = st.columns(2 if len(pair) == 2 else 1)
+            for col_idx, (col, (_, row)) in enumerate(zip(cols, pair)):
+                with col:
+                    actual_idx = int(row.name)
+                    item_number = i + col_idx + 1
+                    render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''), number=item_number)
+                    
+                    checked = st.checkbox("Suka", key=f"eval_a_{actual_idx}")
+                    if checked:
+                        liked_a.add(actual_idx)
+                    else:
+                        liked_a.discard(actual_idx)
 
     st.session_state.liked_a = list(liked_a)
 
@@ -580,18 +591,21 @@ if st.session_state.phase == 'evaluation':
     liked_b = set(st.session_state.liked_b)
 
     if b_df is not None:
-        col1, col2 = st.columns(2)
-        for i, (_, row) in enumerate(b_df.iterrows(), 1):
-            target_col = col1 if i % 2 != 0 else col2
-            with target_col:
-                actual_idx = int(row.name)
-                render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''), number=i)
-                
-                checked = st.checkbox("Suka", key=f"eval_b_{actual_idx}")
-                if checked:
-                    liked_b.add(actual_idx)
-                else:
-                    liked_b.discard(actual_idx)
+        b_items = list(b_df.iterrows())
+        for i in range(0, len(b_items), 2):
+            pair = b_items[i:i+2]
+            cols = st.columns(2 if len(pair) == 2 else 1)
+            for col_idx, (col, (_, row)) in enumerate(zip(cols, pair)):
+                with col:
+                    actual_idx = int(row.name)
+                    item_number = i + col_idx + 1
+                    render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''), number=item_number)
+                    
+                    checked = st.checkbox("Suka", key=f"eval_b_{actual_idx}")
+                    if checked:
+                        liked_b.add(actual_idx)
+                    else:
+                        liked_b.discard(actual_idx)
 
     st.session_state.liked_b = list(liked_b)
 
