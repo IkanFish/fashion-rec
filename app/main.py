@@ -132,8 +132,13 @@ div[data-testid="stCheckbox"] {
     border-radius: 4px;
 }
 
-/* Constrain image width on mobile to prevent stretching */
+/* Force 2-column layout on mobile + constrain image width */
 @media (max-width: 768px) {
+    div[data-testid="column"] {
+        width: 50% !important;
+        flex: 1 1 50% !important;
+        min-width: 50% !important;
+    }
     img {
         max-width: 150px !important;
         height: auto !important;
