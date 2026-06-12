@@ -132,15 +132,31 @@ div[data-testid="stCheckbox"] {
     border-radius: 4px;
 }
 
-/* Force 2-column layout on mobile + constrain image width */
+/* Force 2-column layout on mobile for item grids */
 @media (max-width: 768px) {
-    div[data-testid="column"] {
-        width: 50% !important;
-        flex: 1 1 50% !important;
-        min-width: 50% !important;
+    /* Prevent horizontal scroll / right-side whitespace */
+    html, body, [data-testid="stAppViewContainer"] {
+        overflow-x: hidden !important;
+    }
+
+    /* Parent flex container: force row layout ONLY for 2-column blocks
+       (skip 3-column blocks like preference buttons) */
+    div[data-testid="stHorizontalBlock"]:not(:has(> div[data-testid="column"]:nth-child(3))) {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+    }
+    /* Child columns in 2-column blocks: force 50% width */
+    div[data-testid="stHorizontalBlock"]:not(:has(> div[data-testid="column"]:nth-child(3)))
+    > div[data-testid="column"] {
+        width: calc(50% - 0.25rem) !important;
+        flex: 0 0 calc(50% - 0.25rem) !important;
+        min-width: calc(50% - 0.25rem) !important;
+        max-width: calc(50% - 0.25rem) !important;
+        box-sizing: border-box !important;
     }
     img {
-        max-width: 150px !important;
+        max-width: 100% !important;
         height: auto !important;
     }
 }
