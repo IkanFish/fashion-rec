@@ -687,18 +687,3 @@ if st.session_state.phase == 'done':
     """, unsafe_allow_html=True)
     st.markdown("---")
 
-    # Debug info (hidden from normal users, visible in dev)
-    with st.expander("🔍 Detail Sesi (Debug)"):
-        st.json({
-            'session_id' : st.session_state.session_id,
-            'demographics': {
-                'age': st.session_state.demo_age,
-                'gender': st.session_state.demo_gender,
-                'frequency': st.session_state.demo_frequency,
-            },
-            'ab_mapping' : st.session_state.ab_mapping,
-            'preference' : st.session_state.preference,
-            'n_liked_cs' : len(st.session_state.liked_cs),
-            'n_liked_a'  : len(st.session_state.liked_a),
-            'n_liked_b'  : len(st.session_state.liked_b),
-        })
