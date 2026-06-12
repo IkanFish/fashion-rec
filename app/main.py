@@ -151,6 +151,11 @@ div[data-testid="stCheckbox"] {
         flex: 1 1 calc(50% - 0.5rem) !important;
         min-width: 0 !important;
     }
+    
+    /* Secara eksplisit geser checkbox di kolom kanan (item 2,4,6,8) ke arah kiri */
+    div[data-testid="stHorizontalBlock"] > div[data-testid="column"]:nth-child(2) div[data-testid="stCheckbox"] {
+        transform: translateX(-25px) !important;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
