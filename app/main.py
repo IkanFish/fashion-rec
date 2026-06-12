@@ -187,35 +187,54 @@ def pil_to_base64(img: Image.Image) -> str:
     return base64.b64encode(buf.getvalue()).decode()
 
 
+def _build_cell_html(img_path: str, category: str, number: int = 0) -> str:
+    """Build HTML for a single grid cell (image + category label)."""
+    img = load_image_cached(img_path, *IMG_DISPLAY_SIZE)
+    b64 = pil_to_base64(img)
+    cat_display = category.replace('_', ' ').title() if category else ''
+    badge = (
+        f'<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.55);'
+        f'color:#fff;border-radius:50%;width:24px;height:24px;display:flex;'
+        f'align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">'
+        f'{number}</div>'
+    ) if number > 0 else ''
+    return (
+        f'<div style="position:relative;text-align:center;background:#fff;'
+        f'border-radius:10px;border:1px solid #eee;padding:6px;overflow:hidden;">'
+        f'{badge}'
+        f'<img src="data:image/jpeg;base64,{b64}" '
+        f'style="width:100%;height:auto;border-radius:6px;display:block;">'
+        f'<div style="font-size:0.72rem;color:#666;margin-top:3px;">{cat_display}</div>'
+        f'</div>'
+    )
+
+
 def render_items_grid_html(items_data: list, show_numbers: bool = False):
-    """Render items as a pure HTML/CSS grid — immune to Streamlit's column stacking.
-    items_data: list of (image_path, category) tuples.
-    """
-    cells = []
-    for i, (img_path, category) in enumerate(items_data, 1):
-        img = load_image_cached(img_path, *IMG_DISPLAY_SIZE)
-        b64 = pil_to_base64(img)
-        cat_display = category.replace('_', ' ').title() if category else ''
-        badge = (
-            f'<div style="position:absolute;top:6px;left:6px;background:rgba(0,0,0,0.55);'
-            f'color:#fff;border-radius:50%;width:24px;height:24px;display:flex;'
-            f'align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;">'
-            f'{i}</div>'
-        ) if show_numbers else ''
-        cells.append(
-            f'<div style="position:relative;text-align:center;background:#fff;'
-            f'border-radius:10px;border:1px solid #eee;padding:6px;overflow:hidden;">'
-            f'{badge}'
-            f'<img src="data:image/jpeg;base64,{b64}" '
-            f'style="width:100%;height:auto;border-radius:6px;display:block;">'
-            f'<div style="font-size:0.72rem;color:#666;margin-top:3px;">{cat_display}</div>'
-            f'</div>'
-        )
+    """Render ALL items as a single pure HTML/CSS grid (for display-only, no checkboxes)."""
+    cells = [_build_cell_html(p, c, i if show_numbers else 0)
+             for i, (p, c) in enumerate(items_data, 1)]
     html = (
         '<div style="display:grid;grid-template-columns:repeat(2,1fr);'
         'gap:10px;margin-bottom:0.8rem;">'
-        + ''.join(cells)
-        + '</div>'
+        + ''.join(cells) + '</div>'
+    )
+    st.markdown(html, unsafe_allow_html=True)
+
+
+def render_pair_html(left_path: str, left_cat: str,
+                     right_path: str = '', right_cat: str = ''):
+    """Render exactly 2 images as one HTML grid row (or 1 if right is empty)."""
+    left = _build_cell_html(left_path, left_cat)
+    if right_path:
+        right = _build_cell_html(right_path, right_cat)
+        cols = 'repeat(2,1fr)'
+    else:
+        right = ''
+        cols = '1fr'
+    html = (
+        f'<div style="display:grid;grid-template-columns:{cols};'
+        f'gap:10px;margin-bottom:0.3rem;">'
+        f'{left}{right}</div>'
     )
     st.markdown(html, unsafe_allow_html=True)
 
@@ -390,22 +409,30 @@ if st.session_state.phase == 'cold_start':
 
     cs_df = st.session_state.cold_start_df
 
-    # Render items as pure HTML grid (bypasses Streamlit mobile column stacking)
+    # Render items pair-by-pair: HTML grid row + st.columns(2) checkboxes
     items_list = list(cs_df.iterrows())
-    items_data = [(row.get(COL_PATH, ''), row.get(COL_CATEGORY, '')) for _, row in items_list]
-    render_items_grid_html(items_data, show_numbers=True)
-
-    # Checkboxes below grid — numbered to match images
-    st.markdown("**Centang item yang kamu suka:**")
     current_liked = set(st.session_state.liked_cs)
-    for i, (_, row) in enumerate(items_list, 1):
-        actual_idx = int(row.name)
-        cat = row.get(COL_CATEGORY, '').replace('_', ' ').title()
-        checked = st.checkbox(f"❤️ Item {i} — {cat}", key=f"cs_{actual_idx}")
-        if checked:
-            current_liked.add(actual_idx)
-        else:
-            current_liked.discard(actual_idx)
+
+    for i in range(0, len(items_list), 2):
+        pair = items_list[i:i+2]
+        # --- images as HTML grid row ---
+        left = pair[0][1]
+        right = pair[1][1] if len(pair) > 1 else None
+        render_pair_html(
+            left.get(COL_PATH, ''), left.get(COL_CATEGORY, ''),
+            right.get(COL_PATH, '') if right is not None else '',
+            right.get(COL_CATEGORY, '') if right is not None else '',
+        )
+        # --- checkboxes directly below their images ---
+        cb_cols = st.columns(2 if len(pair) == 2 else 1)
+        for col_w, (_, row) in zip(cb_cols, pair):
+            with col_w:
+                actual_idx = int(row.name)
+                checked = st.checkbox("❤️ Suka", key=f"cs_{actual_idx}")
+                if checked:
+                    current_liked.add(actual_idx)
+                else:
+                    current_liked.discard(actual_idx)
 
     st.session_state.liked_cs = list(current_liked)
 
@@ -536,16 +563,24 @@ if st.session_state.phase == 'evaluation':
 
     if a_df is not None:
         a_items = list(a_df.iterrows())
-        items_data = [(row.get(COL_PATH, ''), row.get(COL_CATEGORY, '')) for _, row in a_items]
-        render_items_grid_html(items_data, show_numbers=True)
-        for i, (_, row) in enumerate(a_items, 1):
-            actual_idx = int(row.name)
-            cat = row.get(COL_CATEGORY, '').replace('_', ' ').title()
-            checked = st.checkbox(f"Suka Item {i} — {cat}", key=f"eval_a_{actual_idx}")
-            if checked:
-                liked_a.add(actual_idx)
-            else:
-                liked_a.discard(actual_idx)
+        for i in range(0, len(a_items), 2):
+            pair = a_items[i:i+2]
+            left = pair[0][1]
+            right = pair[1][1] if len(pair) > 1 else None
+            render_pair_html(
+                left.get(COL_PATH, ''), left.get(COL_CATEGORY, ''),
+                right.get(COL_PATH, '') if right is not None else '',
+                right.get(COL_CATEGORY, '') if right is not None else '',
+            )
+            cb_cols = st.columns(2 if len(pair) == 2 else 1)
+            for col_w, (_, row) in zip(cb_cols, pair):
+                with col_w:
+                    actual_idx = int(row.name)
+                    checked = st.checkbox("Suka", key=f"eval_a_{actual_idx}")
+                    if checked:
+                        liked_a.add(actual_idx)
+                    else:
+                        liked_a.discard(actual_idx)
 
     st.session_state.liked_a = list(liked_a)
 
@@ -558,16 +593,24 @@ if st.session_state.phase == 'evaluation':
 
     if b_df is not None:
         b_items = list(b_df.iterrows())
-        items_data = [(row.get(COL_PATH, ''), row.get(COL_CATEGORY, '')) for _, row in b_items]
-        render_items_grid_html(items_data, show_numbers=True)
-        for i, (_, row) in enumerate(b_items, 1):
-            actual_idx = int(row.name)
-            cat = row.get(COL_CATEGORY, '').replace('_', ' ').title()
-            checked = st.checkbox(f"Suka Item {i} — {cat}", key=f"eval_b_{actual_idx}")
-            if checked:
-                liked_b.add(actual_idx)
-            else:
-                liked_b.discard(actual_idx)
+        for i in range(0, len(b_items), 2):
+            pair = b_items[i:i+2]
+            left = pair[0][1]
+            right = pair[1][1] if len(pair) > 1 else None
+            render_pair_html(
+                left.get(COL_PATH, ''), left.get(COL_CATEGORY, ''),
+                right.get(COL_PATH, '') if right is not None else '',
+                right.get(COL_CATEGORY, '') if right is not None else '',
+            )
+            cb_cols = st.columns(2 if len(pair) == 2 else 1)
+            for col_w, (_, row) in zip(cb_cols, pair):
+                with col_w:
+                    actual_idx = int(row.name)
+                    checked = st.checkbox("Suka", key=f"eval_b_{actual_idx}")
+                    if checked:
+                        liked_b.add(actual_idx)
+                    else:
+                        liked_b.discard(actual_idx)
 
     st.session_state.liked_b = list(liked_b)
 
