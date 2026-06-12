@@ -143,20 +143,13 @@ div[data-testid="stCheckbox"] {
     /* Prevent Streamlit from stacking columns vertically */
     div[data-testid="stHorizontalBlock"] {
         flex-direction: row !important;
-        flex-wrap: nowrap !important; /* FORCE side-by-side, no wrapping */
-        gap: 10px !important; /* Match the gap of HTML image grid (10px) */
+        flex-wrap: nowrap !important;
     }
-    /* Force columns to split evenly without overflowing */
+    /* Mirror Streamlit's desktop 2-column calculation on mobile */
     div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
-        width: calc(50% - 5px) !important;
-        flex: 1 1 calc(50% - 5px) !important;
-        min-width: 0 !important; /* Allow shrinking */
-        padding: 0 !important; /* Remove native padding */
-    }
-    /* Center the checkboxes inside the columns so they align perfectly under images */
-    div[data-testid="stHorizontalBlock"] > div[data-testid="column"] div[data-testid="stCheckbox"] {
-        display: flex;
-        justify-content: center;
+        width: calc(50% - 0.5rem) !important;
+        flex: 1 1 calc(50% - 0.5rem) !important;
+        min-width: 0 !important;
     }
 }
 </style>
