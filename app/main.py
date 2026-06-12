@@ -143,13 +143,15 @@ div[data-testid="stCheckbox"] {
     /* Prevent Streamlit from stacking columns vertically */
     div[data-testid="stHorizontalBlock"] {
         flex-direction: row !important;
-        flex-wrap: wrap !important;
+        flex-wrap: nowrap !important; /* FORCE side-by-side, no wrapping */
+        gap: 0 !important; /* Remove gap that causes overflow */
     }
-    /* Force columns to take at least ~50% width (allows 2 per row). 
-       This works across all mobile browsers (no :has() needed). */
+    /* Force columns to split evenly without overflowing */
     div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
-        flex: 1 1 45% !important;
-        min-width: 45% !important;
+        width: 50% !important;
+        flex: 1 1 50% !important;
+        min-width: 0 !important; /* Allow shrinking */
+        padding: 0 4px !important; /* Reduce padding to fit */
     }
 }
 </style>
