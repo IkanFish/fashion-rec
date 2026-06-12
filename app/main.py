@@ -140,16 +140,20 @@ div[data-testid="stCheckbox"] {
         overflow-x: hidden !important;
     }
 
-    /* Prevent Streamlit from stacking columns vertically */
+    /* Prevent Streamlit from stacking columns vertically, but allow wrap for 3+ columns */
     div[data-testid="stHorizontalBlock"] {
         flex-direction: row !important;
-        flex-wrap: nowrap !important;
+        flex-wrap: wrap !important; /* MUST wrap so 3-column layout doesn't overflow horizontally */
+        gap: 10px !important; /* Force a strict, small gap */
     }
-    /* Mirror Streamlit's desktop 2-column calculation on mobile */
+    
+    /* Force columns to split evenly without overflowing */
     div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
-        width: calc(50% - 0.5rem) !important;
-        flex: 1 1 calc(50% - 0.5rem) !important;
+        width: calc(50% - 5px) !important;
+        flex: 0 0 calc(50% - 5px) !important; /* Strict sizing, no growing to prevent overflow */
         min-width: 0 !important;
+        padding: 0 !important; /* Remove Streamlit's internal padding that causes overflow */
+        margin: 0 !important;
     }
 }
 </style>
