@@ -134,10 +134,22 @@ div[data-testid="stCheckbox"] {
     border-radius: 4px;
 }
 
-/* Mobile: prevent horizontal scroll */
+/* Mobile overrides */
 @media (max-width: 768px) {
     html, body, [data-testid="stAppViewContainer"] {
         overflow-x: hidden !important;
+    }
+
+    /* Prevent Streamlit from stacking columns vertically */
+    div[data-testid="stHorizontalBlock"] {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+    }
+    /* Force columns to take at least ~50% width (allows 2 per row). 
+       This works across all mobile browsers (no :has() needed). */
+    div[data-testid="stHorizontalBlock"] > div[data-testid="column"] {
+        flex: 1 1 45% !important;
+        min-width: 45% !important;
     }
 }
 </style>
