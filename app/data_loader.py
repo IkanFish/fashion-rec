@@ -115,10 +115,13 @@ def ensure_data_ready():
         if not check_path.exists():
             missing_zips.add((zip_name, extract_to))
 
-    # Check images directory
-    img_dir = base / 'dataset' / 'In-shop Clothes Retrieval Benchmark' / 'Img'
+    # Check images directory (deploy archive extracts to base/img/)
+    img_dir = base / 'img'
     if not img_dir.exists() or not any(img_dir.rglob('*.jpg')):
-        missing_zips.add(('deploy_images.zip', base))
+        # Also check dev path
+        img_dir_dev = base / 'dataset' / 'In-shop Clothes Retrieval Benchmark' / 'Img'
+        if not img_dir_dev.exists() or not any(img_dir_dev.rglob('*.jpg')):
+            missing_zips.add(('deploy_images.zip', base))
 
     if not missing_zips:
         return  # All data present
@@ -153,8 +156,10 @@ def ensure_data_ready():
             st.stop()
 
     if not img_dir.exists() or not any(img_dir.rglob('*.jpg')):
-        st.error("Image verification failed: no .jpg files found after extraction")
-        st.stop()
+        img_dir_dev = base / 'dataset' / 'In-shop Clothes Retrieval Benchmark' / 'Img'
+        if not img_dir_dev.exists() or not any(img_dir_dev.rglob('*.jpg')):
+            st.error(f"Image verification failed: no .jpg files found in {img_dir} or {img_dir_dev}")
+            st.stop()
 
     # Clear progress UI and continue (no rerun needed)
     progress_container.empty()
