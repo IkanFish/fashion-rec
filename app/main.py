@@ -63,8 +63,8 @@ section[data-testid="stSidebar"] { display: none; }
     width: 10px; height: 10px; border-radius: 50%;
     background: #e0e0e0;
 }
-.step-dot.active { background: #2575fc; box-shadow: 0 0 6px rgba(37,117,252,0.4); }
-.step-dot.done { background: #7c3aed; }
+.step-dot.active { background: #2575fc; }
+.step-dot.done { background: #00c853; }
 
 /* Card style for recommendation columns */
 .rec-column {
@@ -73,7 +73,7 @@ section[data-testid="stSidebar"] { display: none; }
 }
 .rec-column-title {
     font-size: 1.1rem; font-weight: 700; text-align: center;
-    margin-bottom: 0.8rem; color: #7c3aed;
+    margin-bottom: 0.8rem; color: #333;
 }
 
 /* Item card */
@@ -86,30 +86,17 @@ section[data-testid="stSidebar"] { display: none; }
     font-size: 0.7rem; color: #666; margin-top: 2px;
 }
 
-/* Buttons — purple gradient */
+/* Preference buttons */
 div[data-testid="stButton"] > button {
     border-radius: 10px !important;
     font-weight: 600 !important;
-    background: linear-gradient(135deg, #7c3aed, #6d28d9) !important;
-    color: white !important;
-    border: none !important;
-    transition: all 0.2s ease !important;
-}
-div[data-testid="stButton"] > button:hover {
-    background: linear-gradient(135deg, #6d28d9, #5b21b6) !important;
-    box-shadow: 0 4px 14px rgba(124,58,237,0.35) !important;
-    transform: translateY(-1px) !important;
-}
-div[data-testid="stButton"] > button:active {
-    transform: translateY(0) !important;
 }
 
-/* Info boxes — blue/purple gradient background */
+/* Info/warning boxes */
 .info-box {
-    background: linear-gradient(135deg, #eff6ff, #f5f3ff);
-    border-left: 4px solid #2575fc;
+    background: #e3f2fd; border-left: 4px solid #2575fc;
     border-radius: 8px; padding: 0.8rem 1rem;
-    color: #1e293b; font-size: 0.88rem; margin: 0.8rem 0;
+    color: #1a237e; font-size: 0.88rem; margin: 0.8rem 0;
 }
 
 /* Checkbox custom styling */
@@ -118,10 +105,6 @@ div[data-testid="stCheckbox"] {
     padding: 4px 8px !important;
     margin-top: 2px !important;
 }
-div[data-testid="stCheckbox"] label p {
-    color: #7c3aed !important; font-weight: 500 !important;
-}
-
 /* Responsive item grid: 4 cols on PC, 2 cols on mobile */
 .item-grid {
     display: grid;
@@ -152,42 +135,6 @@ div[data-testid="stCheckbox"] label p {
     border-radius: 4px;
 }
 
-/* Headings — purple/blue gradient text */
-h1, h2, h3 {
-    color: #1e293b !important;
-}
-h2 {
-    background: linear-gradient(90deg, #2575fc, #7c3aed);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700 !important;
-}
-h3 {
-    color: #7c3aed !important;
-}
-
-/* Horizontal rules — warm gradient divider */
-hr {
-    border: none !important;
-    height: 2px !important;
-    background: linear-gradient(90deg, #2575fc, #7c3aed, #fbbf24) !important;
-    margin: 1.2rem 0 !important;
-    border-radius: 2px !important;
-}
-
-/* Alert box overrides */
-[data-testid="stAlert"] {
-    border-radius: 10px !important;
-}
-
-/* Selectbox / Radio / Multiselect label styling */
-div[data-testid="stSelectbox"] label,
-div[data-testid="stRadio"] label,
-div[data-testid="stMultiselect"] label {
-    color: #475569 !important; font-weight: 500 !important;
-}
-
 /* Mobile overrides */
 @media (max-width: 768px) {
     html, body, [data-testid="stAppViewContainer"] {
@@ -199,7 +146,7 @@ div[data-testid="stMultiselect"] label {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: wrap !important;
-        gap: 2% !important;
+        gap: 2% !important; /* Use percentage gap for safer fluid layout */
     }
     
     /* Force immediate children of horizontal block to split evenly */
@@ -209,10 +156,6 @@ div[data-testid="stMultiselect"] label {
         min-width: 0 !important;
         padding: 0 !important;
         margin: 0 !important;
-    }
-
-    h2 {
-        font-size: 1.3rem !important;
     }
 }
 </style>
