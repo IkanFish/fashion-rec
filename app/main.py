@@ -13,6 +13,7 @@ from io import BytesIO
 import numpy as np
 import pandas as pd
 import streamlit as st
+from streamlit_js_eval import streamlit_js_eval
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -295,18 +296,16 @@ init_state()
 def scroll_to_top():
     """Injects JS to force the browser to scroll to the top of the page."""
     js = '''
-    <script>
-        var parent = window.parent;
-        // Scroll the main window
-        parent.scrollTo(0, 0);
-        // Scroll all possible Streamlit scrollable containers
-        var containers = parent.document.querySelectorAll('.main, [data-testid="stAppViewContainer"], [data-testid="stAppViewBlockContainer"]');
-        for (var i = 0; i < containers.length; i++) {
-            containers[i].scrollTop = 0;
-        }
-    </script>
+    const forceScroll = () => {
+        const containers = window.document.querySelectorAll('.main, [data-testid="stAppViewContainer"], [data-testid="stAppViewBlockContainer"], .block-container');
+        containers.forEach(c => { c.scrollTop = 0; });
+        window.scrollTo(0, 0);
+    };
+    forceScroll();
+    setTimeout(forceScroll, 100);
+    setTimeout(forceScroll, 500);
     '''
-    st.components.v1.html(js, height=0)
+    streamlit_js_eval(js_expressions=js, key=f"scroll_to_top_{st.session_state.phase}")
 
 # Check if phase just changed to trigger scroll to top
 if st.session_state.phase != st.session_state.previous_phase:
@@ -726,12 +725,3 @@ if st.session_state.phase == 'done':
             })
 
 
-# ── Scroll to top (delayed so it fires AFTER Streamlit applies the new DOM) ──
-streamlit_js_eval(
-    js_expressions="""
-    window.scrollTo(0, 0);
-    setTimeout(() => window.scrollTo(0, 0), 100);
-    setTimeout(() => window.scrollTo(0, 0), 400);
-    'ok'
-    """
-)
