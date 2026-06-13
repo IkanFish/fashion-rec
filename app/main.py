@@ -13,7 +13,7 @@ from io import BytesIO
 import numpy as np
 import pandas as pd
 import streamlit as st
-import streamlit.components.v1 as components
+from streamlit_js_eval import streamlit_js_eval
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -262,6 +262,7 @@ def render_step_indicator(current_step: int, total_steps: int = 5):
 def init_state():
     defaults = {
         'phase'              : 'questionnaire',
+        'previous_phase'     : 'questionnaire',
         'session_id'         : str(uuid.uuid4())[:8],
         # Phase 1: demographics
         'demo_age'           : '',
@@ -292,11 +293,23 @@ def init_state():
 
 init_state()
 
-# ── Scroll to top on page navigation ──
-components.html(
-    "<script>window.scrollTo({top: 0, behavior: 'instant'});</script>",
-    height=0,
-)
+def scroll_to_top():
+    """Injects JS to force the browser to scroll to the top of the page."""
+    js = '''
+    <script>
+        var body = window.parent.document.querySelector(".main");
+        if (body) {
+            body.scrollTop = 0;
+        }
+        window.parent.scrollTo(0, 0);
+    </script>
+    '''
+    st.components.v1.html(js, height=0)
+
+# Check if phase just changed to trigger scroll to top
+if st.session_state.phase != st.session_state.previous_phase:
+    st.session_state.previous_phase = st.session_state.phase
+    scroll_to_top()
 
 
 # ══════════════════════════════════════════════
@@ -710,3 +723,13 @@ if st.session_state.phase == 'done':
                 'n_liked_b'  : len(st.session_state.liked_b),
             })
 
+
+# ── Scroll to top (delayed so it fires AFTER Streamlit applies the new DOM) ──
+streamlit_js_eval(
+    js_expressions="""
+    window.scrollTo(0, 0);
+    setTimeout(() => window.scrollTo(0, 0), 100);
+    setTimeout(() => window.scrollTo(0, 0), 400);
+    'ok'
+    """
+)
