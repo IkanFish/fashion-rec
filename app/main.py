@@ -13,7 +13,6 @@ from io import BytesIO
 import numpy as np
 import pandas as pd
 import streamlit as st
-from streamlit_js_eval import streamlit_js_eval
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(__file__))
@@ -297,11 +296,14 @@ def scroll_to_top():
     """Injects JS to force the browser to scroll to the top of the page."""
     js = '''
     <script>
-        var body = window.parent.document.querySelector(".main");
-        if (body) {
-            body.scrollTop = 0;
+        var parent = window.parent;
+        // Scroll the main window
+        parent.scrollTo(0, 0);
+        // Scroll all possible Streamlit scrollable containers
+        var containers = parent.document.querySelectorAll('.main, [data-testid="stAppViewContainer"], [data-testid="stAppViewBlockContainer"]');
+        for (var i = 0; i < containers.length; i++) {
+            containers[i].scrollTop = 0;
         }
-        window.parent.scrollTo(0, 0);
     </script>
     '''
     st.components.v1.html(js, height=0)
