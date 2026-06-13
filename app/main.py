@@ -13,7 +13,6 @@ from io import BytesIO
 import numpy as np
 import pandas as pd
 import streamlit as st
-from streamlit_js_eval import streamlit_js_eval
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(__file__))
