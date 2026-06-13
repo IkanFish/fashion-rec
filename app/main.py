@@ -37,6 +37,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Invisible marker at the absolute top of the app
+st.markdown("<div id='top-marker'></div>", unsafe_allow_html=True)
+
+
 # ══════════════════════════════════════════════
 #  DATA CHECK (downloads from GitHub Releases on first cloud run)
 # ══════════════════════════════════════════════
@@ -294,18 +298,32 @@ def init_state():
 init_state()
 
 def scroll_to_top():
-    """Injects JS to force the browser to scroll to the top of the page."""
+    """Injects an iframe that accesses the parent DOM to scroll to the top marker."""
     js = '''
-    const forceScroll = () => {
-        const containers = window.document.querySelectorAll('.main, [data-testid="stAppViewContainer"], [data-testid="stAppViewBlockContainer"], .block-container');
-        containers.forEach(c => { c.scrollTop = 0; });
-        window.scrollTo(0, 0);
-    };
-    forceScroll();
-    setTimeout(forceScroll, 100);
-    setTimeout(forceScroll, 500);
+    <script>
+        function forceScroll() {
+            var p = window.parent;
+            if (p) {
+                // Target 1: The explicit marker
+                var marker = p.document.getElementById('top-marker');
+                if (marker) marker.scrollIntoView();
+                
+                // Target 2: The standard Streamlit view container
+                var container = p.document.querySelector('[data-testid="stAppViewContainer"]');
+                if (container) container.scrollTop = 0;
+                
+                // Target 3: Fallback window scroll
+                p.scrollTo(0, 0);
+            }
+        }
+        forceScroll();
+        setTimeout(forceScroll, 100);
+        setTimeout(forceScroll, 300);
+        setTimeout(forceScroll, 800);
+    </script>
     '''
-    streamlit_js_eval(js_expressions=js, key=f"scroll_to_top_{st.session_state.phase}")
+    import streamlit.components.v1 as components
+    components.html(js, height=0)
 
 # Check if phase just changed to trigger scroll to top
 if st.session_state.phase != st.session_state.previous_phase:
