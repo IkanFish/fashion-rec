@@ -378,13 +378,13 @@ if st.session_state.phase == 'questionnaire':
     col1, col2 = st.columns(2)
     with col1:
         age = st.selectbox(
-            "Rentang Usia",
+            "Rentang Usia :red[*]",
             options=['', '< 18', '18-21', '22-25', '26-30', '31-35', '> 35'],
             format_func=lambda x: '— Pilih —' if x == '' else x,
         )
     with col2:
         gender = st.radio(
-            "Gender",
+            "Gender :red[*]",
             options=['Pria', 'Wanita', 'Tidak menjawab'],
             index=None,
             horizontal=True,
@@ -394,7 +394,7 @@ if st.session_state.phase == 'questionnaire':
     st.markdown("### Kebiasaan Belanja Fashion")
 
     frequency = st.radio(
-        "Seberapa sering Anda membeli pakaian/fashion secara online?",
+        "Seberapa sering Anda membeli pakaian/fashion secara online? :red[*]",
         options=[
             'Tidak pernah membeli fashion online',
             '1-2 kali per bulan',
@@ -411,7 +411,7 @@ if st.session_state.phase == 'questionnaire':
     )
 
     difficulty = st.radio(
-        "Pernah mengalami kesulitan mencari pakaian yang sesuai secara visual saat belanja online?",
+        "Pernah mengalami kesulitan mencari pakaian yang sesuai secara visual saat belanja online? :red[*]",
         options=[
             'Sering — hampir selalu sulit menemukan yang cocok',
             'Kadang-kadang — terkadang sulit',
@@ -424,7 +424,12 @@ if st.session_state.phase == 'questionnaire':
     st.markdown("---")
 
     # Validation
-    can_proceed = age != '' and gender != ''
+    can_proceed = all([
+        age != '', 
+        gender is not None, 
+        frequency is not None, 
+        difficulty is not None
+    ])
 
     if st.button("Mulai Evaluasi →", disabled=not can_proceed, use_container_width=True):
         st.session_state.demo_age       = age
@@ -436,7 +441,7 @@ if st.session_state.phase == 'questionnaire':
         st.rerun()
 
     if not can_proceed:
-        st.info("💡 Lengkapi rentang usia dan gender untuk melanjutkan.")
+        st.info("💡 Harap lengkapi seluruh pertanyaan wajib yang bertanda bintang (*) merah untuk melanjutkan.")
 
     st.stop()
 
