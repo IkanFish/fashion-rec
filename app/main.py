@@ -366,6 +366,7 @@ if st.session_state.phase == 'questionnaire':
         gender = st.radio(
             "Gender",
             options=['Pria', 'Wanita', 'Tidak menjawab'],
+            index=None,
             horizontal=True,
         )
 
@@ -380,6 +381,7 @@ if st.session_state.phase == 'questionnaire':
             '3-5 kali per bulan',
             'Lebih dari 5 kali per bulan',
         ],
+        index=None,
     )
 
     platforms = st.multiselect(
@@ -396,6 +398,7 @@ if st.session_state.phase == 'questionnaire':
             'Jarang — biasanya mudah menemukan',
             'Tidak pernah — selalu mudah',
         ],
+        index=None,
     )
 
     st.markdown("---")
