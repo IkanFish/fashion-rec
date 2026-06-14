@@ -366,8 +366,9 @@ if st.session_state.phase == 'questionnaire':
     st.markdown("## 👗 Evaluasi Sistem Rekomendasi Fashion")
     st.markdown("""
     <div class='info-box'>
-    Halo! Kamu akan membantu mengevaluasi sistem rekomendasi pakaian berbasis AI.<br>
-    Proses ini hanya memakan waktu <strong>~3 menit</strong>. Jawabanmu sangat berharga!
+    Halo! Perkenalkan nama saya <strong>Ghani Naja Fadhilah</strong>, mahasiswa tingkat akhir yang sedang menyusun tugas akhir. Di sini Anda dapat membantu saya mengevaluasi sistem rekomendasi pakaian berbasis <em>machine learning</em>.<br><br>
+    Proses ini hanya memakan waktu <strong>~2 menit</strong> saja! Tenang, saya hanya mengambil data yang Anda berikan pada halaman ini, dan menjamin data Anda murni hanya akan digunakan untuk kebutuhan akademis.<br><br>
+    Terima kasih sudah meluangkan waktu untuk mengisi survei ini. Jawaban Anda sangat berharga!
     </div>
     """, unsafe_allow_html=True)
 
