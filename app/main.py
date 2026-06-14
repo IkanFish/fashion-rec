@@ -61,7 +61,7 @@ if 'cookie_checked' not in st.session_state:
         st.rerun()
 
 if st.session_state.get('has_completed', False):
-    st.error("⚠️ Kamu sudah pernah mengisi survei ini sebelumnya. Terima kasih banyak atas partisipasimu!")
+    st.error("⚠️ Anda sudah pernah mengisi survei ini sebelumnya. Terima kasih banyak atas partisipasi Anda!")
     st.stop()
 
 # ══════════════════════════════════════════════
@@ -394,7 +394,7 @@ if st.session_state.phase == 'questionnaire':
     st.markdown("### Kebiasaan Belanja Fashion")
 
     frequency = st.radio(
-        "Seberapa sering kamu membeli pakaian/fashion secara online?",
+        "Seberapa sering Anda membeli pakaian/fashion secara online?",
         options=[
             'Tidak pernah membeli fashion online',
             '1-2 kali per bulan',
@@ -405,9 +405,9 @@ if st.session_state.phase == 'questionnaire':
     )
 
     platforms = st.multiselect(
-        "Platform e-commerce yang pernah kamu gunakan *(opsional)*",
+        "Platform e-commerce yang pernah Anda gunakan *(opsional)*",
         options=['Shopee', 'Tokopedia', 'Lazada', 'TikTok Shop', 'Blibli', 'Zalora', 'Lainnya'],
-        help="Pilih semua yang pernah kamu pakai. Boleh dikosongkan.",
+        help="Pilih semua yang pernah Anda pakai. Boleh dikosongkan.",
     )
 
     difficulty = st.radio(
@@ -448,11 +448,12 @@ if st.session_state.phase == 'cold_start':
     render_step_indicator(2)
     rec_sys = get_recommender()
 
-    st.markdown("## 👋 Pilih Pakaian Favoritmu")
+    st.markdown("## 👋 Pilih Pakaian Favorit Anda")
     st.markdown("""
     <div class='info-box'>
-    Pilih item pakaian yang menarik perhatianmu. Sistem akan mempelajari seleramu dari pilihan ini.<br>
-    <strong>Pilih minimal 1 item</strong> yang kamu suka.
+    Pilihlah item pakaian di bawah ini yang sesuai dengan selera Anda. Sistem akan mempelajari selera Anda dari pakaian yang Anda sukai.<br>
+    Anda juga dapat mengklik tombol <strong>'Acak Ulang'</strong> jika tidak ada item yang Anda sukai.<br><br>
+    <strong>Pilih minimal 1 item</strong> yang Anda suka.
     </div>
     """, unsafe_allow_html=True)
 
@@ -544,8 +545,8 @@ if st.session_state.phase == 'recommendation':
     st.markdown("## 🛍️ Bandingkan Dua Rekomendasi")
     st.markdown("""
     <div class='info-box'>
-    Sistem menghasilkan dua set rekomendasi berdasarkan selera visualmu.<br>
-    Lihat kedua set di bawah, lalu pilih mana yang <strong>lebih kamu sukai</strong>.
+    Sistem menghasilkan dua set rekomendasi berdasarkan selera visual Anda.<br>
+    Lihat kedua set di bawah, lalu pilih mana yang <strong>lebih Anda sukai</strong>.
     </div>
     """, unsafe_allow_html=True)
 
@@ -576,7 +577,7 @@ if st.session_state.phase == 'recommendation':
                     render_single_html_card(row.get(COL_PATH, ''), row.get(COL_CATEGORY, ''))
 
     st.markdown("---")
-    st.markdown("### Mana yang lebih kamu sukai?")
+    st.markdown("### Mana yang lebih Anda sukai?")
 
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -611,12 +612,12 @@ if st.session_state.phase == 'evaluation':
         'equal': 'Keduanya sama saja',
     }.get(pref, pref)
 
-    st.markdown("## ✅ Tandai Item yang Kamu Suka")
+    st.markdown("## ✅ Tandai Item yang Anda Suka")
     st.markdown(f"""
     <div class='info-box'>
-    Kamu memilih: <strong>{pref_label}</strong>.<br>
-    Sekarang tandai item yang <strong>benar-benar kamu suka</strong>
-    (yang akan kamu pakai/beli) dari kedua set. Boleh kosongkan.
+    Anda memilih: <strong>{pref_label}</strong>.<br>
+    Sekarang tandai item yang <strong>benar-benar Anda sukai</strong>
+    (yang akan Anda pakai/beli) dari kedua set. Boleh dikosongkan.
     </div>
     """, unsafe_allow_html=True)
 
@@ -742,10 +743,10 @@ if st.session_state.phase == 'done':
     st.markdown("""
     <div style='text-align: center; padding: 2rem 0;'>
         <p style='font-size: 1.1rem; color: #333;'>
-            Jawabanmu telah berhasil dikirim dan sangat membantu penelitian ini.
+            Jawaban Anda telah berhasil dikirim dan sangat membantu penelitian ini.
         </p>
         <p style='font-size: 0.9rem; color: #666;'>
-            Kamu bisa menutup halaman ini.
+            Anda dapat menutup halaman ini.
         </p>
     </div>
     """, unsafe_allow_html=True)
