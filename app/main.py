@@ -46,6 +46,24 @@ st.markdown("<div id='top-marker'></div>", unsafe_allow_html=True)
 ensure_data_ready()
 
 # ══════════════════════════════════════════════
+#  PREVENT DOUBLE SUBMISSION (Cookie / LocalStorage)
+# ══════════════════════════════════════════════
+if 'cookie_checked' not in st.session_state:
+    completed_status = streamlit_js_eval(js_expressions="window.localStorage.getItem('fashion_study_completed') || 'false'", key="check_completed")
+    
+    if completed_status is None:
+        st.markdown("<h3 style='text-align: center; margin-top: 100px; font-weight: normal;'>Memuat sesi... ⏳</h3>", unsafe_allow_html=True)
+        st.stop()
+    else:
+        st.session_state.cookie_checked = True
+        st.session_state.has_completed = (completed_status == 'true')
+        st.rerun()
+
+if st.session_state.get('has_completed', False):
+    st.error("⚠️ Kamu sudah pernah mengisi survei ini sebelumnya. Terima kasih banyak atas partisipasimu!")
+    st.stop()
+
+# ══════════════════════════════════════════════
 #  CSS — Mobile-first, clean questionnaire style
 # ══════════════════════════════════════════════
 st.markdown("""
@@ -713,6 +731,9 @@ if st.session_state.phase == 'submit':
 #  PHASE 6: DONE
 # ══════════════════════════════════════════════
 if st.session_state.phase == 'done':
+    # Write cookie to prevent double submission
+    streamlit_js_eval(js_expressions="window.localStorage.setItem('fashion_study_completed', 'true')", key="set_completed")
+
     st.markdown("---")
     st.markdown("")
     st.markdown("## 🎉 Terima Kasih!")
