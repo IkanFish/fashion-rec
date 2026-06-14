@@ -24,6 +24,7 @@ baseline_text_cbf/evaluation/*.npy
 
 # Secrets (NEVER push credentials)
 .streamlit/secrets.toml
+app/.streamlit/secrets.toml
 
 # OS
 .DS_Store
