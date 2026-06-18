@@ -19,6 +19,19 @@ _img_dev    = os.path.join(DATASET_DIR, 'In-shop Clothes Retrieval Benchmark', '
 IMG_ROOT = _img_deploy if os.path.isdir(_img_deploy) else _img_dev
 IS_DEV_ENV = (IMG_ROOT == _img_dev)
 
+
+def get_img_root() -> str:
+    """Re-evaluate IMG_ROOT at runtime (after ensure_data_ready downloads).
+    Import-time IMG_ROOT may be stale if img/ was not yet extracted."""
+    if os.path.isdir(_img_deploy):
+        return _img_deploy
+    return _img_dev
+
+
+def get_is_dev_env() -> bool:
+    """Re-evaluate IS_DEV_ENV at runtime."""
+    return get_img_root() == _img_dev
+
 # ── Feature Files (auto-detect local dev vs cloud deployment) ──
 # CNN: VGG19 Experiment 3 (Partial Unfreeze) — best performing model
 _cnn_deploy = os.path.join(FEATURES_DIR, 'vgg19_features_exp3.npy')

@@ -112,10 +112,7 @@ def ensure_data_ready():
 
     # If all dev paths exist, we're in local dev mode — skip download
     if dev_features_exist and dev_images_exist and dev_dataset_exist:
-        st.info("[data_loader] Local dev mode detected — skipping download.")
         return  # Local development mode
-
-    st.info("[data_loader] Cloud deployment mode — checking deploy data...")
 
     # Cloud deployment mode — check deploy paths
     required_files = [
@@ -136,10 +133,8 @@ def ensure_data_ready():
         missing_zips.add(('deploy_images.zip', base))
 
     if not missing_zips:
-        st.info("[data_loader] All deploy data already present.")
         return  # All deploy data present
 
-    st.info(f"[data_loader] Missing data: {[z[0] for z in missing_zips]}")
 
     # Need to download — show progress UI
     progress_container = st.container()
@@ -165,16 +160,18 @@ def ensure_data_ready():
         st.success("All data ready! Loading app...")
 
     # Verify files exist after extraction
+    missing_after = []
     for check_path, zip_name, _ in required_files:
         if not check_path.exists():
-            parent = check_path.parent
-            contents = list(parent.iterdir()) if parent.exists() else []
-            st.error(
-                f"Data verification failed: {check_path.name} not found after extracting {zip_name}.\n"
-                f"Directory {parent} exists={parent.exists()}, "
-                f"contents={[f.name for f in contents[:20]]}"
-            )
-            st.stop()
+            missing_after.append((check_path, zip_name))
+    if missing_after:
+        details = []
+        for cp, zn in missing_after:
+            parent = cp.parent
+            contents = [f.name for f in list(parent.iterdir())[:20]] if parent.exists() else []
+            details.append(f"{cp.name} (from {zn}), dir contents: {contents}")
+        st.error("Data verification failed:\n" + "\n".join(details))
+        st.stop()
 
     if not img_dir.exists() or not any(img_dir.rglob('*.jpg')):
         st.error(f"Image verification failed: no .jpg files found in {img_dir}")

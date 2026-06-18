@@ -18,10 +18,10 @@ from PIL import Image
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+import config
 from config import (
-    IMG_ROOT, COL_PATH, COL_CATEGORY,
+    COL_PATH, COL_CATEGORY,
     COLD_START_K, REC_TOP_N, IMG_DISPLAY_SIZE, SHEET_NAME,
-    IS_DEV_ENV
 )
 from engine import DualRecommenderSystem
 from sheets import submit_to_sheets, build_submission_row
@@ -189,11 +189,13 @@ div[data-testid="stCheckbox"] {
 # ══════════════════════════════════════════════
 def resolve_img_path(relative_path: str) -> str:
     """Convert relative path from CSV to absolute path.
-    Tries original extension first, then .jpg fallback (for deployment)."""
+    Tries original extension first, then .jpg fallback (for deployment).
+    Uses runtime IMG_ROOT resolution (not stale import-time value)."""
+    img_root = config.get_img_root()  # re-evaluate at runtime
     p = str(relative_path).replace('\\', '/')
     if p.startswith('img/'):
         p = p[4:]
-    full = os.path.join(IMG_ROOT, p)
+    full = os.path.join(img_root, p)
     # Deployment: all images are resized .jpg — try that if original not found
     if not os.path.exists(full):
         jpg_path = os.path.splitext(full)[0] + '.jpg'
@@ -757,7 +759,7 @@ if st.session_state.phase == 'done':
     """, unsafe_allow_html=True)
     st.markdown("---")
 
-    if IS_DEV_ENV:
+    if config.get_is_dev_env():
         with st.expander("🔍 Detail Sesi (Debug)"):
             st.json({
                 'session_id' : st.session_state.session_id,
