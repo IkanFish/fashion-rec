@@ -19,11 +19,46 @@ import pandas as pd
 from sklearn.cluster import MiniBatchKMeans
 from typing import List, Tuple, Optional
 
+import config
 from config import (
-    MASTER_CSV, CNN_FEATURE_PATH, TEXT_FEATURE_PATH,
     COL_PATH, COL_ITEM_ID, COL_CATEGORY,
     COLD_START_K, REC_TOP_N, RANDOM_STATE,
 )
+
+
+def _resolve_paths():
+    """Re-evaluate data paths at runtime (after ensure_data_ready downloads).
+    config.py evaluates at import time, which may be BEFORE cloud data is extracted."""
+    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    features_dir = os.path.join(base, 'features')
+    dataset_dir  = os.path.join(base, 'dataset')
+    text_eval_dir = os.path.join(base, 'baseline_text_cbf', 'evaluation')
+
+    # Master CSV
+    master_csv = os.path.join(dataset_dir, 'master_dataset.csv')
+
+    # CNN features: deploy flat path vs dev nested path
+    cnn_deploy = os.path.join(features_dir, 'vgg19_features_exp3.npy')
+    cnn_dev    = os.path.join(features_dir, 'exp3_partial_unfreeze', 'vgg19_features_exp3.npy')
+    cnn_path   = cnn_deploy if os.path.exists(cnn_deploy) else cnn_dev
+
+    # Text features: deploy flat path vs dev nested path
+    text_deploy = os.path.join(features_dir, 'onehot_filtered_matrix.npy')
+    text_dev    = os.path.join(text_eval_dir, 'onehot_filtered_matrix.npy')
+    text_path   = text_deploy if os.path.exists(text_deploy) else text_dev
+
+    return master_csv, cnn_path, text_path
+
+
+def _verify_file(path: str, label: str):
+    """Raise a clear error if a required data file is missing."""
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            f"[{label}] File not found: {path}\n"
+            f"  Directory contents of {os.path.dirname(path)}: "
+            f"{os.listdir(os.path.dirname(path)) if os.path.isdir(os.path.dirname(path)) else '(dir not found)'}\n"
+            f"  Make sure ensure_data_ready() completed successfully."
+        )
 
 
 class _BaseRecommender:
@@ -85,10 +120,17 @@ class DualRecommenderSystem:
     """
 
     def __init__(self):
+        # Re-evaluate paths at runtime (config.py paths may be stale)
+        master_csv, cnn_path, text_path = _resolve_paths()
+
+        _verify_file(master_csv, 'MASTER_CSV')
+        _verify_file(cnn_path,   'CNN_FEATURES')
+        _verify_file(text_path,  'TEXT_FEATURES')
+
         # Load data once
-        self._df = pd.read_csv(MASTER_CSV)
-        self._cnn_feat  = np.load(CNN_FEATURE_PATH)    # (7975, 512)
-        self._text_feat = np.load(TEXT_FEATURE_PATH)   # (7975, 1158)
+        self._df = pd.read_csv(master_csv)
+        self._cnn_feat  = np.load(cnn_path)     # (7975, 512)
+        self._text_feat = np.load(text_path)    # (7975, 1158)
 
         # L2-normalize both matrices for cosine similarity via dot product
         self._cnn_feat  = self._l2_normalize(self._cnn_feat)
