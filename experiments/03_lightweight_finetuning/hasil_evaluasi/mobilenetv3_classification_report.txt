@@ -1,0 +1,24 @@
+=== CLASSIFICATION REPORT: MOBILENETV3 (Lightweight Fine-Tuning) ===
+
+                     precision    recall  f1-score   support
+
+     Blouses_Shirts       0.60      0.67      0.64       806
+          Cardigans       0.54      0.24      0.33       137
+              Denim       0.66      0.55      0.60        60
+            Dresses       0.81      0.82      0.82       428
+       Graphic_Tees       0.75      0.78      0.76       177
+      Jackets_Coats       0.61      0.52      0.56       378
+      Jackets_Vests       0.53      0.52      0.52       162
+           Leggings       0.70      0.80      0.75      1446
+              Pants       0.71      0.59      0.65        86
+  Rompers_Jumpsuits       0.84      0.81      0.82       690
+       Shirts_Polos       0.62      0.40      0.49       131
+             Shorts       0.74      0.61      0.67       174
+             Skirts       0.79      0.86      0.82        51
+           Sweaters       0.81      0.32      0.46        41
+Sweatshirts_Hoodies       0.77      0.77      0.77       246
+         Tees_Tanks       0.69      0.55      0.61       161
+
+           accuracy                           0.70      5174
+          macro avg       0.70      0.61      0.64      5174
+       weighted avg       0.70      0.70      0.70      5174

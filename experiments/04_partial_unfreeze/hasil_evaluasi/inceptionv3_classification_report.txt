@@ -1,0 +1,24 @@
+=== CLASSIFICATION REPORT: INCEPTIONV3 (Partial Unfreeze) ===
+
+                     precision    recall  f1-score   support
+
+     Blouses_Shirts       0.67      0.68      0.67       806
+          Cardigans       0.54      0.27      0.36       137
+              Denim       0.68      0.72      0.70        60
+            Dresses       0.85      0.84      0.85       428
+       Graphic_Tees       0.85      0.80      0.82       177
+      Jackets_Coats       0.61      0.61      0.61       378
+      Jackets_Vests       0.62      0.47      0.54       162
+           Leggings       0.73      0.79      0.76      1446
+              Pants       0.65      0.48      0.55        86
+  Rompers_Jumpsuits       0.78      0.91      0.84       690
+       Shirts_Polos       0.61      0.47      0.53       131
+             Shorts       0.74      0.61      0.67       174
+             Skirts       0.83      0.86      0.85        51
+           Sweaters       0.67      0.24      0.36        41
+Sweatshirts_Hoodies       0.76      0.83      0.79       246
+         Tees_Tanks       0.81      0.62      0.70       161
+
+           accuracy                           0.73      5174
+          macro avg       0.71      0.64      0.66      5174
+       weighted avg       0.72      0.73      0.72      5174

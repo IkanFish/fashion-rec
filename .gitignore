@@ -30,7 +30,17 @@ features/
 models/
 models_temp/
 *.npy
+*.h5
 *.zip
+
+# ============================================================
+# Versi lama / working directory lokal (sudah digantikan experiments/)
+# File tetap ada di lokal, hanya tidak di-track git.
+# ============================================================
+notebooks/
+evaluation/
+baseline_text_cbf/
+grid_search/
 
 # ============================================================
 # Dokumen skripsi / sidang (tidak untuk repo publik)
@@ -59,17 +69,22 @@ scratch_*.py
 # Secrets (JANGAN pernah di-push)
 # ============================================================
 .streamlit/secrets.toml
-app/.streamlit/secrets.toml
+**/.streamlit/secrets.toml
 
 # ============================================================
 # Yang TETAP di-upload:
 #   README.md, requirements.txt, requirements-app.txt
-#   app/                  -> aplikasi Streamlit
-#   notebooks/            -> pipeline eksperimen (01..07, 05x, dll)
-#   evaluation/           -> hasil metrik (CSV) & grafik (PNG)
-#   baseline_text_cbf/    -> baseline text-CBF (script .py, .csv, .png)
-#   grid_search/          -> script tuning (.py saja, hasil di folder ignored)
-#   prepare_deploy_data.py
-#   grafik_peningkatan_recommender.ipynb
-#   visualisasi_arsitektur_cnn.ipynb
+#   app/                      -> aplikasi Streamlit final (user study A/B)
+#   experiments/              -> pipeline final berurutan 01..08
+#     01_data_preparation     -> master_dataset.csv + output dataset
+#     02_baseline             -> ekstraksi bobot ImageNet (retrieval & rekomendasi)
+#     03_lightweight_finetuning   -> training + eval klasifikasi/retrieval/rekomendasi
+#     04_partial_unfreeze         -> training + eval (model final: VGG19 Exp3)
+#     05_retrieval_analysis       -> analisis retrieval exp3 per kategori
+#     06_text_cbf_onehot          -> baseline teks one-hot + analisis leakage
+#     07_nn_visualization         -> visualisasi tetangga terdekat per kategori
+#     08_user_study               -> data mentah + analisis A/B testing
+#   prepare_deploy_data.py    -> bangun arsip data untuk GitHub Releases
+#   visualisasi_arsitektur_cnn.ipynb  -> diagram arsitektur CNN (Gambar 2.2-2.5 TA)
+#   grafik_peningkatan_recommender.ipynb -> grafik peningkatan performa (Bab 4 TA)
 # ============================================================

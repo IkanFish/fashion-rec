@@ -1,4 +1,0 @@
-Model,K,Precision,Recall,F1,NDCG,Diversity
-TF-IDF v2 (No Leakage),5,0.562,0.014,0.0265,0.5786,0.5377
-TF-IDF v2 (No Leakage),10,0.532,0.0286,0.0512,0.5511,0.5754
-TF-IDF v2 (No Leakage),20,0.504,0.0552,0.0901,0.5245,0.6098

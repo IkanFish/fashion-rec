@@ -1,0 +1,17 @@
+category,n_items,clothes_type,gender
+Tees_Tanks,1710,upper-body,MEN/WOMEN
+Blouses_Shirts,1429,upper-body,WOMEN
+Dresses,1271,full-body,WOMEN
+Shorts,597,lower-body,MEN/WOMEN
+Sweaters,510,upper-body,MEN/WOMEN
+Pants,421,lower-body,MEN/WOMEN
+Jackets_Coats,359,upper-body,WOMEN
+Rompers_Jumpsuits,327,full-body,WOMEN
+Skirts,287,lower-body,WOMEN
+Graphic_Tees,279,upper-body,WOMEN
+Sweatshirts_Hoodies,240,upper-body,MEN/WOMEN
+Cardigans,228,upper-body,WOMEN
+Denim,131,lower-body,MEN/WOMEN
+Shirts_Polos,85,upper-body,MEN
+Leggings,53,lower-body,WOMEN
+Jackets_Vests,48,upper-body,MEN
