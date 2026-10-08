@@ -1,0 +1,20 @@
+{
+  "run_name": "vgg19_adam_bs24_lr1e-05_uf50",
+  "model": "vgg19",
+  "optimizer": "adam",
+  "weight_decay": 0,
+  "batch_size": 24,
+  "phase2_lr": 1e-05,
+  "unfreeze_blocks": 50,
+  "p1_val_acc": 0.5553,
+  "p1_stopped_epoch": 5,
+  "p2_val_acc": 0.7282,
+  "p2_best_epoch": 4,
+  "p2_stopped_epoch": 8,
+  "HitRate@1": 0.2641,
+  "HitRate@5": 0.4325,
+  "HitRate@10": 0.5078,
+  "HitRate@20": 0.5881,
+  "mAP": 0.1429,
+  "time_min": 47.5
+}

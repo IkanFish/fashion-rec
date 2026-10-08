@@ -1,0 +1,20 @@
+{
+  "run_name": "inceptionv3_adam_bs24_lr1e-05_uf50",
+  "model": "inceptionv3",
+  "optimizer": "adam",
+  "weight_decay": 0,
+  "batch_size": 24,
+  "phase2_lr": 1e-05,
+  "unfreeze_blocks": 50,
+  "p1_val_acc": 0.5955,
+  "p1_stopped_epoch": 5,
+  "p2_val_acc": 0.7054,
+  "p2_best_epoch": 10,
+  "p2_stopped_epoch": 10,
+  "HitRate@1": 0.2307,
+  "HitRate@5": 0.4077,
+  "HitRate@10": 0.4918,
+  "HitRate@20": 0.5779,
+  "mAP": 0.1329,
+  "time_min": 25.5
+}

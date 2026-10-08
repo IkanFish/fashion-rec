@@ -16,32 +16,60 @@ env/
 .idea/
 *.swp
 
-# Data (large files — served via GitHub Releases)
-data/
-dataset/
-features/
-baseline_text_cbf/evaluation/*.npy
-
-# Secrets (NEVER push credentials)
-.streamlit/secrets.toml
-app/.streamlit/secrets.toml
-
 # OS
 .DS_Store
 Thumbs.db
 
-# Internal / not deployed
-.qoder/
+# ============================================================
+# Data & artefak besar (TIDAK di-push ke GitHub)
+# GitHub membatasi file 100 MB — dataset & fitur jauh di atas itu.
+# ============================================================
+data/
+dataset/
+features/
+models/
+models_temp/
+*.npy
+*.zip
+
+# ============================================================
+# Dokumen skripsi / sidang (tidak untuk repo publik)
+# ============================================================
 sempro/
 skripsi/
 docs/
-evaluation/
-grid_search/
 handover/
-notebooks/
-baseline_text_cbf/
-app/recommender.py
-prepare_deploy_data.py
-requirements-app.txt
-_deploy_requirements.txt
-experiment_plan_attribute_filtering.md
+BUKU TA*
+*.tex
+conference_paper_ghani.pdf
+
+# ============================================================
+# File internal tooling / scratch (bukan bagian proyek)
+# ============================================================
+.qoder/
+.agents/
+.agent_memory.md
+.gemini/
+opencode.json
+SKILL.md
+scratch/
+scratch_*.py
+
+# ============================================================
+# Secrets (JANGAN pernah di-push)
+# ============================================================
+.streamlit/secrets.toml
+app/.streamlit/secrets.toml
+
+# ============================================================
+# Yang TETAP di-upload:
+#   README.md, requirements.txt, requirements-app.txt
+#   app/                  -> aplikasi Streamlit
+#   notebooks/            -> pipeline eksperimen (01..07, 05x, dll)
+#   evaluation/           -> hasil metrik (CSV) & grafik (PNG)
+#   baseline_text_cbf/    -> baseline text-CBF (script .py, .csv, .png)
+#   grid_search/          -> script tuning (.py saja, hasil di folder ignored)
+#   prepare_deploy_data.py
+#   grafik_peningkatan_recommender.ipynb
+#   visualisasi_arsitektur_cnn.ipynb
+# ============================================================

@@ -1,0 +1,4 @@
+Model,K,Precision,Recall,F1,NDCG,Diversity
+One-Hot Encoding,5,0.628,0.0174,0.0329,0.6409,0.3975
+One-Hot Encoding,10,0.608,0.0349,0.0625,0.6231,0.4245
+One-Hot Encoding,20,0.586,0.0657,0.1073,0.6025,0.4541

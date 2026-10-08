@@ -8,18 +8,28 @@ Sistem rekomendasi produk fashion berbasis konten visual menggunakan CNN sebagai
 
 ```
 Visual Based Rekomender Sistem/
-├── notebooks/
-│   ├── 01_data_preparation.py    ← Jalankan di Google Colab (langkah 1)
-│   ├── 02_feature_extraction.py  ← Jalankan di Google Colab GPU (langkah 2)
-│   └── 03_evaluation.py          ← Jalankan di Google Colab (langkah 3)
-├── app/
-│   ├── main.py          ← Streamlit app (entry point)
-│   ├── recommender.py   ← Engine: cold-start, user profile, cosine sim
-│   ├── utils.py         ← Helper: image loading, formatting
-│   └── config.py        ← Konfigurasi path & hyperparameter
+├── app/                        ← Aplikasi Streamlit (user study A/B: CNN vs Text)
+│   ├── main.py                 ← Entry point aplikasi
+│   ├── engine.py               ← Engine dual recommender (CNN VGG19 Exp3 + One-Hot text)
+│   ├── data_loader.py          ← Auto-download data dari GitHub Releases saat first run
+│   ├── sheets.py               ← Logging respons user study ke Google Sheets
+│   └── config.py               ← Konfigurasi path & hyperparameter
+├── notebooks/                  ← Pipeline eksperimen (jalankan di Google Colab)
+│   ├── 01_data_preparation.py  ← langkah 1: bangun master_dataset.csv
+│   ├── 02_feature_extraction.py← langkah 2: ekstraksi fitur CNN (GPU)
+│   ├── 03_evaluation.py        ← langkah 3: komparasi 4 arsitektur CNN
+│   ├── 04x_experiment3*.py     ← fine-tuning & partial unfreeze (VGG19 dkk)
+│   ├── 05x_retrieval_evaluation.py ← evaluasi retrieval per eksperimen
+│   └── 06–08                   ← baseline text-CBF & visualisasi vektor
+├── evaluation/                 ← Hasil metrik (CSV) & grafik (PNG) tiap eksperimen
+├── baseline_text_cbf/          ← Baseline text-CBF: one-hot, analisis leakage atribut
+├── grid_search/                ← Script & hasil tuning hyperparameter
+├── prepare_deploy_data.py      ← Bangun arsip data untuk deploy (GitHub Releases)
 ├── requirements.txt
 └── README.md
 ```
+
+> **Catatan:** folder `data/`, `dataset/`, `features/`, `models/` (file `.npy`/`.zip` berukuran GB) sengaja **tidak** di-push ke GitHub karena melewati batas 100 MB per file. Data runtime diambil otomatis oleh `app/data_loader.py` dari GitHub Releases.
 
 ---
 
@@ -64,9 +74,9 @@ streamlit run app/main.py
 ## ⚙️ Konfigurasi
 
 Edit `app/config.py` untuk menyesuaikan:
-- `GDRIVE_BASE` — lokasi folder di Google Drive
-- `TOP_N` — jumlah rekomendasi yang ditampilkan (default: 10)
-- `COLD_START_N` — jumlah item cold-start (default: 8)
+- `COLD_START_K` — jumlah item cold-start hasil K-Means (default: 8)
+- `REC_TOP_N` — jumlah rekomendasi per set (default: 8)
+- Path fitur & dataset (`FEATURES_DIR`, `DATASET_DIR`) — di dev lokal menunjuk ke `features/` dan `dataset/`, di cloud otomatis pakai arsip dari GitHub Releases.
 
 ---
 
@@ -79,7 +89,7 @@ Edit `app/config.py` untuk menyesuaikan:
 | InceptionV3 | 2048 | ~23M | 299×299 |
 | MobileNetV3 | 960 | ~5.4M | 224×224 |
 
-> Semua model menggunakan bobot **ImageNet pre-trained** dengan Global Average Pooling (tanpa fine-tuning) sebagai feature extractor murni.
+> Eksperimen: Exp1 memakai bobot **ImageNet pre-trained** sebagai feature extractor murni; Exp2–Exp3 melakukan fine-tuning (termasuk partial unfreeze). Model terbaik yang dipakai di aplikasi: **VGG19 Exp3 (partial unfreeze, 512-D)**, dibandingkan baseline **One-Hot text-CBF (1158-D)**.
 
 ---
 
@@ -97,10 +107,13 @@ Dievaluasi pada K = 5, 10, 20 dengan 100 simulasi user.
 
 ## 📦 Dataset
 
-**DeepFashion — Category and Attribute Prediction Benchmark**  
-[https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion/AttributePrediction.html](https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion/AttributePrediction.html)
+**DeepFashion — In-shop Clothes Retrieval Benchmark**  
+[https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion/InShopRetrieval.html](https://mmlab.ie.cuhk.edu.hk/projects/DeepFashion/InShopRetrieval.html)
 
-File yang dibutuhkan:
+File yang dibutuhkan (diletakkan di `dataset/In-shop Clothes Retrieval Benchmark/`):
 - `Img/` — folder gambar
-- `Anno/list_category_cloth.txt`
-- `Anno/list_category_img.txt`
+- `Anno/list_item_inshop.txt`
+- `Anno/list_eval_partition.txt`
+- `Anno/list_bbox_inshop.txt`
+
+Dataset tidak di-commit ke repo (ukurannya >13 GB). Unduh manual dari link di atas, atau jalankan `notebooks/01_data_preparation.py` di Colab dengan dataset yang sudah ada di Google Drive.

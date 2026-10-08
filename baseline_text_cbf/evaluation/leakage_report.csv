@@ -1,0 +1,464 @@
+attr_index,attr_name,n_active_items,dominant_category,dominance_pct,n_categories,verdict,top3_categories
+279,light,1,Dresses,1.0,1,JELAS_LEAKAGE,Dresses: 1 (100.0%)
+262,jumpsuit,130,Rompers_Jumpsuits,1.0,1,JELAS_LEAKAGE,Rompers_Jumpsuits: 130 (100.0%)
+165,romper,183,Rompers_Jumpsuits,0.9727,4,JELAS_LEAKAGE,"Rompers_Jumpsuits: 178 (97.3%), Jackets_Coats: 2 (1.1%), Cardigans: 2 (1.1%)"
+309,sweatpants,92,Pants,0.9565,3,JELAS_LEAKAGE,"Pants: 88 (95.7%), Denim: 2 (2.2%), Tees_Tanks: 2 (2.2%)"
+221,bodycon,137,Dresses,0.8102,7,STRONG_LEAKAGE,"Dresses: 111 (81.0%), Skirts: 14 (10.2%), Tees_Tanks: 7 (5.1%)"
+203,sweatshirt,163,Sweatshirts_Hoodies,0.7914,10,STRONG_LEAKAGE,"Sweatshirts_Hoodies: 129 (79.1%), Sweaters: 11 (6.7%), Dresses: 5 (3.1%)"
+253,notched,128,Jackets_Coats,0.7812,9,STRONG_LEAKAGE,"Jackets_Coats: 100 (78.1%), Blouses_Shirts: 6 (4.7%), Jackets_Vests: 5 (3.9%)"
+28,shorts,677,Shorts,0.7799,13,STRONG_LEAKAGE,"Shorts: 528 (78.0%), Tees_Tanks: 55 (8.1%), Blouses_Shirts: 38 (5.6%)"
+240,peasant,144,Blouses_Shirts,0.7708,6,STRONG_LEAKAGE,"Blouses_Shirts: 111 (77.1%), Dresses: 27 (18.8%), Skirts: 2 (1.4%)"
+118,pants,343,Pants,0.7668,14,STRONG_LEAKAGE,"Pants: 263 (76.7%), Blouses_Shirts: 25 (7.3%), Tees_Tanks: 16 (4.7%)"
+147,blouse,266,Blouses_Shirts,0.7632,10,STRONG_LEAKAGE,"Blouses_Shirts: 203 (76.3%), Skirts: 12 (4.5%), Jackets_Coats: 10 (3.8%)"
+282,hoodie,111,Sweatshirts_Hoodies,0.7477,10,STRONG_LEAKAGE,"Sweatshirts_Hoodies: 83 (74.8%), Sweaters: 8 (7.2%), Tees_Tanks: 5 (4.5%)"
+11,dress,1757,Dresses,0.7057,17,STRONG_LEAKAGE,"Dresses: 1240 (70.6%), Blouses_Shirts: 124 (7.1%), Tees_Tanks: 87 (5.0%)"
+83,sweater,422,Sweaters,0.6919,14,PARTIAL,"Sweaters: 292 (69.2%), Tees_Tanks: 36 (8.5%), Skirts: 18 (4.3%)"
+206,slub,164,Tees_Tanks,0.6768,11,PARTIAL,"Tees_Tanks: 111 (67.7%), Sweaters: 12 (7.3%), Dresses: 10 (6.1%)"
+234,billowy,131,Blouses_Shirts,0.6718,13,PARTIAL,"Blouses_Shirts: 88 (67.2%), Tees_Tanks: 15 (11.5%), Dresses: 9 (6.9%)"
+256,flare,210,Dresses,0.6476,11,PARTIAL,"Dresses: 136 (64.8%), Blouses_Shirts: 23 (11.0%), Pants: 14 (6.7%)"
+215,basics,143,Tees_Tanks,0.6364,13,PARTIAL,"Tees_Tanks: 91 (63.6%), Blouses_Shirts: 14 (9.8%), Shorts: 9 (6.3%)"
+261,curved,119,Tees_Tanks,0.6303,8,PARTIAL,"Tees_Tanks: 75 (63.0%), Blouses_Shirts: 20 (16.8%), Dresses: 11 (9.2%)"
+275,a-line,110,Dresses,0.6273,7,PARTIAL,"Dresses: 69 (62.7%), Skirts: 32 (29.1%), Blouses_Shirts: 3 (2.7%)"
+74,tank,431,Tees_Tanks,0.6172,10,PARTIAL,"Tees_Tanks: 266 (61.7%), Blouses_Shirts: 79 (18.3%), Graphic_Tees: 39 (9.0%)"
+117,maxi,319,Dresses,0.6082,12,PARTIAL,"Dresses: 194 (60.8%), Skirts: 30 (9.4%), Blouses_Shirts: 21 (6.6%)"
+352,vest,75,Jackets_Coats,0.6,8,PARTIAL,"Jackets_Coats: 45 (60.0%), Cardigans: 14 (18.7%), Blouses_Shirts: 6 (8.0%)"
+90,cardigan,345,Cardigans,0.5913,11,PARTIAL,"Cardigans: 204 (59.1%), Sweaters: 108 (31.3%), Dresses: 10 (2.9%)"
+115,embroidery,248,Blouses_Shirts,0.5847,9,PARTIAL,"Blouses_Shirts: 145 (58.5%), Dresses: 46 (18.5%), Tees_Tanks: 17 (6.9%)"
+349,tasseled,84,Blouses_Shirts,0.5714,9,PARTIAL,"Blouses_Shirts: 48 (57.1%), Dresses: 15 (17.9%), Sweaters: 6 (7.1%)"
+353,accessories,78,Dresses,0.5641,7,PARTIAL,"Dresses: 44 (56.4%), Rompers_Jumpsuits: 12 (15.4%), Blouses_Shirts: 10 (12.8%)"
+333,strapless,86,Dresses,0.5581,4,PARTIAL,"Dresses: 48 (55.8%), Rompers_Jumpsuits: 25 (29.1%), Blouses_Shirts: 10 (11.6%)"
+194,bodice,160,Dresses,0.5563,6,PARTIAL,"Dresses: 89 (55.6%), Rompers_Jumpsuits: 36 (22.5%), Blouses_Shirts: 26 (16.2%)"
+75,keyhole,402,Blouses_Shirts,0.5398,6,PARTIAL,"Blouses_Shirts: 217 (54.0%), Dresses: 125 (31.1%), Rompers_Jumpsuits: 31 (7.7%)"
+134,modal,260,Tees_Tanks,0.5346,11,PARTIAL,"Tees_Tanks: 139 (53.5%), Graphic_Tees: 88 (33.8%), Dresses: 16 (6.2%)"
+18,tee,1281,Tees_Tanks,0.5332,17,PARTIAL,"Tees_Tanks: 683 (53.3%), Graphic_Tees: 212 (16.5%), Blouses_Shirts: 74 (5.8%)"
+356,open-knit,79,Sweaters,0.5316,8,PARTIAL,"Sweaters: 42 (53.2%), Cardigans: 16 (20.3%), Tees_Tanks: 10 (12.7%)"
+95,jacket,335,Jackets_Coats,0.5313,16,PARTIAL,"Jackets_Coats: 178 (53.1%), Jackets_Vests: 37 (11.0%), Tees_Tanks: 31 (9.3%)"
+56,acrylic,499,Sweaters,0.5291,11,PARTIAL,"Sweaters: 264 (52.9%), Cardigans: 116 (23.2%), Jackets_Coats: 51 (10.2%)"
+340,sweetheart,87,Dresses,0.5287,4,PARTIAL,"Dresses: 46 (52.9%), Blouses_Shirts: 16 (18.4%), Tees_Tanks: 14 (16.1%)"
+140,invisible,260,Dresses,0.5231,8,PARTIAL,"Dresses: 136 (52.3%), Rompers_Jumpsuits: 43 (16.5%), Skirts: 41 (15.8%)"
+209,blazer,155,Jackets_Coats,0.5226,13,PARTIAL,"Jackets_Coats: 81 (52.3%), Blouses_Shirts: 18 (11.6%), Tees_Tanks: 12 (7.7%)"
+264,split,135,Blouses_Shirts,0.5185,8,PARTIAL,"Blouses_Shirts: 70 (51.9%), Tees_Tanks: 19 (14.1%), Dresses: 17 (12.6%)"
+358,gauze,81,Blouses_Shirts,0.5062,7,PARTIAL,"Blouses_Shirts: 41 (50.6%), Dresses: 25 (30.9%), Rompers_Jumpsuits: 4 (4.9%)"
+246,racerback,128,Tees_Tanks,0.5,8,AMAN,"Tees_Tanks: 64 (50.0%), Dresses: 30 (23.4%), Blouses_Shirts: 21 (16.4%)"
+184,plaid,167,Blouses_Shirts,0.497,12,AMAN,"Blouses_Shirts: 83 (49.7%), Dresses: 25 (15.0%), Sweaters: 18 (10.8%)"
+196,embroidered,196,Blouses_Shirts,0.4949,13,AMAN,"Blouses_Shirts: 97 (49.5%), Dresses: 46 (23.5%), Tees_Tanks: 21 (10.7%)"
+102,chiffon,325,Blouses_Shirts,0.4923,13,AMAN,"Blouses_Shirts: 160 (49.2%), Dresses: 90 (27.7%), Tees_Tanks: 27 (8.3%)"
+98,heathered,323,Tees_Tanks,0.4923,13,AMAN,"Tees_Tanks: 159 (49.2%), Sweatshirts_Hoodies: 42 (13.0%), Pants: 31 (9.6%)"
+212,armholes,142,Tees_Tanks,0.4859,9,AMAN,"Tees_Tanks: 69 (48.6%), Graphic_Tees: 35 (24.6%), Dresses: 15 (10.6%)"
+100,five-pocket,313,Shorts,0.4824,6,AMAN,"Shorts: 151 (48.2%), Denim: 103 (32.9%), Leggings: 42 (13.4%)"
+66,short-sleeved,437,Tees_Tanks,0.4805,10,AMAN,"Tees_Tanks: 210 (48.1%), Graphic_Tees: 59 (13.5%), Blouses_Shirts: 57 (13.0%)"
+164,muscle,178,Tees_Tanks,0.4775,12,AMAN,"Tees_Tanks: 85 (47.8%), Graphic_Tees: 75 (42.1%), Shorts: 5 (2.8%)"
+129,scoop,280,Tees_Tanks,0.4714,7,AMAN,"Tees_Tanks: 132 (47.1%), Dresses: 85 (30.4%), Blouses_Shirts: 40 (14.3%)"
+154,joggers,213,Pants,0.4695,11,AMAN,"Pants: 100 (46.9%), Tees_Tanks: 59 (27.7%), Denim: 17 (8.0%)"
+22,buttoned,899,Blouses_Shirts,0.4672,16,AMAN,"Blouses_Shirts: 420 (46.7%), Dresses: 152 (16.9%), Jackets_Coats: 69 (7.7%)"
+334,bralette,103,Tees_Tanks,0.466,7,AMAN,"Tees_Tanks: 48 (46.6%), Blouses_Shirts: 25 (24.3%), Graphic_Tees: 13 (12.6%)"
+180,heels,155,Dresses,0.4645,14,AMAN,"Dresses: 72 (46.5%), Blouses_Shirts: 16 (10.3%), Rompers_Jumpsuits: 15 (9.7%)"
+86,crop,608,Tees_Tanks,0.4638,14,AMAN,"Tees_Tanks: 282 (46.4%), Blouses_Shirts: 147 (24.2%), Sweaters: 43 (7.1%)"
+169,airy,186,Blouses_Shirts,0.4624,11,AMAN,"Blouses_Shirts: 86 (46.2%), Dresses: 39 (21.0%), Tees_Tanks: 16 (8.6%)"
+293,wool,101,Sweaters,0.4554,9,AMAN,"Sweaters: 46 (45.5%), Jackets_Coats: 23 (22.8%), Cardigans: 13 (12.9%)"
+229,scalloped,133,Blouses_Shirts,0.4511,10,AMAN,"Blouses_Shirts: 60 (45.1%), Tees_Tanks: 22 (16.5%), Dresses: 20 (15.0%)"
+222,overlay,142,Dresses,0.4507,9,AMAN,"Dresses: 64 (45.1%), Blouses_Shirts: 31 (21.8%), Skirts: 17 (12.0%)"
+111,sheer,685,Blouses_Shirts,0.4453,12,AMAN,"Blouses_Shirts: 305 (44.5%), Tees_Tanks: 174 (25.4%), Dresses: 120 (17.5%)"
+21,sleeveless,989,Dresses,0.4449,13,AMAN,"Dresses: 440 (44.5%), Blouses_Shirts: 281 (28.4%), Tees_Tanks: 132 (13.3%)"
+181,open-front,171,Cardigans,0.4444,5,AMAN,"Cardigans: 76 (44.4%), Sweaters: 42 (24.6%), Jackets_Coats: 33 (19.3%)"
+298,tumble,106,Tees_Tanks,0.4434,12,AMAN,"Tees_Tanks: 47 (44.3%), Blouses_Shirts: 11 (10.4%), Shorts: 10 (9.4%)"
+197,hood,255,Sweatshirts_Hoodies,0.4431,13,AMAN,"Sweatshirts_Hoodies: 113 (44.3%), Jackets_Coats: 49 (19.2%), Sweaters: 18 (7.1%)"
+43,fly,605,Shorts,0.443,13,AMAN,"Shorts: 268 (44.3%), Pants: 118 (19.5%), Denim: 116 (19.2%)"
+174,sultry,183,Dresses,0.4426,9,AMAN,"Dresses: 81 (44.3%), Tees_Tanks: 41 (22.4%), Blouses_Shirts: 34 (18.6%)"
+76,semi-sheer,398,Blouses_Shirts,0.4397,12,AMAN,"Blouses_Shirts: 175 (44.0%), Tees_Tanks: 114 (28.6%), Dresses: 54 (13.6%)"
+251,strappy,114,Dresses,0.4386,10,AMAN,"Dresses: 50 (43.9%), Blouses_Shirts: 24 (21.1%), Tees_Tanks: 20 (17.5%)"
+182,skirts,162,Tees_Tanks,0.4383,10,AMAN,"Tees_Tanks: 71 (43.8%), Blouses_Shirts: 50 (30.9%), Sweaters: 17 (10.5%)"
+170,crepe,185,Blouses_Shirts,0.4378,8,AMAN,"Blouses_Shirts: 81 (43.8%), Dresses: 39 (21.1%), Rompers_Jumpsuits: 19 (10.3%)"
+303,ethereal,94,Blouses_Shirts,0.4362,10,AMAN,"Blouses_Shirts: 41 (43.6%), Dresses: 33 (35.1%), Skirts: 7 (7.4%)"
+335,shawl,83,Cardigans,0.4337,6,AMAN,"Cardigans: 36 (43.4%), Sweaters: 28 (33.7%), Jackets_Coats: 16 (19.3%)"
+106,breezy,312,Blouses_Shirts,0.4327,12,AMAN,"Blouses_Shirts: 135 (43.3%), Dresses: 57 (18.3%), Tees_Tanks: 29 (9.3%)"
+283,surplice,111,Rompers_Jumpsuits,0.4324,5,AMAN,"Rompers_Jumpsuits: 48 (43.2%), Dresses: 38 (34.2%), Blouses_Shirts: 18 (16.2%)"
+136,cutout,352,Dresses,0.4318,9,AMAN,"Dresses: 152 (43.2%), Blouses_Shirts: 73 (20.7%), Tees_Tanks: 72 (20.5%)"
+145,delicate,275,Blouses_Shirts,0.4291,11,AMAN,"Blouses_Shirts: 118 (42.9%), Dresses: 81 (29.5%), Tees_Tanks: 31 (11.3%)"
+166,slip,218,Dresses,0.4266,13,AMAN,"Dresses: 93 (42.7%), Tees_Tanks: 25 (11.5%), Blouses_Shirts: 24 (11.0%)"
+162,sandals,148,Dresses,0.4257,13,AMAN,"Dresses: 63 (42.6%), Rompers_Jumpsuits: 17 (11.5%), Blouses_Shirts: 15 (10.1%)"
+361,cutouts,80,Dresses,0.425,8,AMAN,"Dresses: 34 (42.5%), Blouses_Shirts: 15 (18.8%), Tees_Tanks: 13 (16.2%)"
+235,flowy,130,Blouses_Shirts,0.4231,10,AMAN,"Blouses_Shirts: 55 (42.3%), Dresses: 28 (21.5%), Tees_Tanks: 12 (9.2%)"
+204,flap,162,Jackets_Coats,0.4198,14,AMAN,"Jackets_Coats: 68 (42.0%), Blouses_Shirts: 30 (18.5%), Shorts: 17 (10.5%)"
+278,free-spirited,108,Blouses_Shirts,0.4167,9,AMAN,"Blouses_Shirts: 45 (41.7%), Dresses: 18 (16.7%), Cardigans: 12 (11.1%)"
+344,crinkled,84,Blouses_Shirts,0.4167,8,AMAN,"Blouses_Shirts: 35 (41.7%), Dresses: 28 (33.3%), Rompers_Jumpsuits: 7 (8.3%)"
+42,skirt,676,Skirts,0.4157,11,AMAN,"Skirts: 281 (41.6%), Tees_Tanks: 117 (17.3%), Blouses_Shirts: 106 (15.7%)"
+126,linen,212,Tees_Tanks,0.4151,13,AMAN,"Tees_Tanks: 88 (41.5%), Shorts: 37 (17.5%), Blouses_Shirts: 25 (11.8%)"
+119,cropped,284,Tees_Tanks,0.412,11,AMAN,"Tees_Tanks: 117 (41.2%), Blouses_Shirts: 82 (28.9%), Sweaters: 35 (12.3%)"
+3,knit,3946,Tees_Tanks,0.4065,16,AMAN,"Tees_Tanks: 1604 (40.6%), Dresses: 545 (13.8%), Sweaters: 416 (10.5%)"
+81,crochet,473,Blouses_Shirts,0.4038,13,AMAN,"Blouses_Shirts: 191 (40.4%), Dresses: 92 (19.5%), Tees_Tanks: 75 (15.9%)"
+286,romantic,109,Blouses_Shirts,0.4037,10,AMAN,"Blouses_Shirts: 44 (40.4%), Dresses: 37 (33.9%), Tees_Tanks: 6 (5.5%)"
+259,raw-cut,119,Tees_Tanks,0.4034,11,AMAN,"Tees_Tanks: 48 (40.3%), Graphic_Tees: 38 (31.9%), Dresses: 6 (5.0%)"
+359,grey,5,Pants,0.4,4,AMAN,"Pants: 2 (40.0%), Dresses: 1 (20.0%), Sweaters: 1 (20.0%)"
+192,sporty,170,Tees_Tanks,0.4,14,AMAN,"Tees_Tanks: 68 (40.0%), Dresses: 23 (13.5%), Shorts: 18 (10.6%)"
+150,zippered,211,Jackets_Coats,0.3981,14,AMAN,"Jackets_Coats: 84 (39.8%), Pants: 39 (18.5%), Jackets_Vests: 25 (11.8%)"
+77,self-tie,397,Blouses_Shirts,0.398,12,AMAN,"Blouses_Shirts: 158 (39.8%), Dresses: 114 (28.7%), Rompers_Jumpsuits: 42 (10.6%)"
+299,colorblocked,98,Tees_Tanks,0.398,14,AMAN,"Tees_Tanks: 39 (39.8%), Dresses: 11 (11.2%), Blouses_Shirts: 11 (11.2%)"
+337,chunky,78,Sweaters,0.3974,11,AMAN,"Sweaters: 31 (39.7%), Cardigans: 14 (17.9%), Dresses: 10 (12.8%)"
+48,point,440,Tees_Tanks,0.3955,15,AMAN,"Tees_Tanks: 174 (39.5%), Dresses: 71 (16.1%), Blouses_Shirts: 58 (13.2%)"
+133,high-waisted,238,Tees_Tanks,0.3908,10,AMAN,"Tees_Tanks: 93 (39.1%), Blouses_Shirts: 52 (21.8%), Shorts: 40 (16.8%)"
+200,placket,154,Blouses_Shirts,0.3896,13,AMAN,"Blouses_Shirts: 60 (39.0%), Dresses: 25 (16.2%), Shirts_Polos: 17 (11.0%)"
+207,spaghetti,154,Dresses,0.3896,4,AMAN,"Dresses: 60 (39.0%), Blouses_Shirts: 47 (30.5%), Tees_Tanks: 31 (20.1%)"
+157,everyday,222,Tees_Tanks,0.3874,16,AMAN,"Tees_Tanks: 86 (38.7%), Blouses_Shirts: 23 (10.4%), Shorts: 22 (9.9%)"
+263,polyurethane,119,Jackets_Coats,0.3866,11,AMAN,"Jackets_Coats: 46 (38.7%), Skirts: 19 (16.0%), Shorts: 12 (10.1%)"
+96,button-down,335,Blouses_Shirts,0.3851,15,AMAN,"Blouses_Shirts: 129 (38.5%), Sweaters: 48 (14.3%), Shirts_Polos: 40 (11.9%)"
+5,unlined,2940,Blouses_Shirts,0.385,16,AMAN,"Blouses_Shirts: 1132 (38.5%), Dresses: 616 (21.0%), Pants: 223 (7.6%)"
+305,intricate,112,Blouses_Shirts,0.3839,10,AMAN,"Blouses_Shirts: 43 (38.4%), Tees_Tanks: 23 (20.5%), Dresses: 20 (17.9%)"
+294,fringe,128,Blouses_Shirts,0.3828,11,AMAN,"Blouses_Shirts: 49 (38.3%), Cardigans: 28 (21.9%), Sweaters: 16 (12.5%)"
+190,skater,144,Dresses,0.3819,9,AMAN,"Dresses: 55 (38.2%), Skirts: 40 (27.8%), Tees_Tanks: 30 (20.8%)"
+36,straps,623,Dresses,0.3804,11,AMAN,"Dresses: 237 (38.0%), Blouses_Shirts: 165 (26.5%), Rompers_Jumpsuits: 115 (18.5%)"
+191,slit,295,Dresses,0.3797,12,AMAN,"Dresses: 112 (38.0%), Blouses_Shirts: 63 (21.4%), Tees_Tanks: 51 (17.3%)"
+258,necklace,145,Dresses,0.3793,10,AMAN,"Dresses: 55 (37.9%), Blouses_Shirts: 29 (20.0%), Tees_Tanks: 27 (18.6%)"
+146,sweet,370,Dresses,0.3757,13,AMAN,"Dresses: 139 (37.6%), Blouses_Shirts: 100 (27.0%), Tees_Tanks: 50 (13.5%)"
+266,ornate,123,Blouses_Shirts,0.374,10,AMAN,"Blouses_Shirts: 46 (37.4%), Dresses: 23 (18.7%), Tees_Tanks: 17 (13.8%)"
+8,top,2085,Blouses_Shirts,0.3727,16,AMAN,"Blouses_Shirts: 777 (37.3%), Tees_Tanks: 713 (34.2%), Jackets_Coats: 96 (4.6%)"
+72,adjustable,424,Dresses,0.3726,9,AMAN,"Dresses: 158 (37.3%), Blouses_Shirts: 121 (28.5%), Rompers_Jumpsuits: 90 (21.2%)"
+92,button,1621,Blouses_Shirts,0.3714,17,AMAN,"Blouses_Shirts: 602 (37.1%), Dresses: 240 (14.8%), Jackets_Coats: 145 (8.9%)"
+225,bottoms,114,Tees_Tanks,0.3684,11,AMAN,"Tees_Tanks: 42 (36.8%), Blouses_Shirts: 26 (22.8%), Pants: 21 (18.4%)"
+211,topper,182,Jackets_Coats,0.3681,11,AMAN,"Jackets_Coats: 67 (36.8%), Sweaters: 33 (18.1%), Cardigans: 26 (14.3%)"
+67,v-neckline,450,Dresses,0.3667,9,AMAN,"Dresses: 165 (36.7%), Blouses_Shirts: 110 (24.4%), Tees_Tanks: 89 (19.8%)"
+131,flattering,347,Dresses,0.366,14,AMAN,"Dresses: 127 (36.6%), Tees_Tanks: 44 (12.7%), Blouses_Shirts: 33 (9.5%)"
+105,striped,395,Tees_Tanks,0.3646,15,AMAN,"Tees_Tanks: 144 (36.5%), Dresses: 67 (17.0%), Sweaters: 38 (9.6%)"
+20,lining,969,Dresses,0.3643,16,AMAN,"Dresses: 353 (36.4%), Jackets_Coats: 174 (18.0%), Blouses_Shirts: 96 (9.9%)"
+210,raglan,151,Tees_Tanks,0.3642,11,AMAN,"Tees_Tanks: 55 (36.4%), Sweatshirts_Hoodies: 32 (21.2%), Sweaters: 30 (19.9%)"
+339,rock,190,Dresses,0.3632,14,AMAN,"Dresses: 69 (36.3%), Tees_Tanks: 28 (14.7%), Graphic_Tees: 21 (11.1%)"
+199,pencil,139,Blouses_Shirts,0.3597,7,AMAN,"Blouses_Shirts: 50 (36.0%), Skirts: 48 (34.5%), Tees_Tanks: 23 (16.5%)"
+35,cami,640,Blouses_Shirts,0.3594,13,AMAN,"Blouses_Shirts: 230 (35.9%), Dresses: 167 (26.1%), Tees_Tanks: 140 (21.9%)"
+245,office,137,Blouses_Shirts,0.3577,14,AMAN,"Blouses_Shirts: 49 (35.8%), Dresses: 19 (13.9%), Jackets_Coats: 13 (9.5%)"
+137,dropped,267,Tees_Tanks,0.3558,11,AMAN,"Tees_Tanks: 95 (35.6%), Sweaters: 56 (21.0%), Blouses_Shirts: 28 (10.5%)"
+223,super-soft,138,Tees_Tanks,0.3551,13,AMAN,"Tees_Tanks: 49 (35.5%), Graphic_Tees: 15 (10.9%), Dresses: 14 (10.1%)"
+79,boxy,398,Blouses_Shirts,0.3518,10,AMAN,"Blouses_Shirts: 140 (35.2%), Tees_Tanks: 140 (35.2%), Sweaters: 44 (11.1%)"
+29,graphic,693,Graphic_Tees,0.3506,16,AMAN,"Graphic_Tees: 243 (35.1%), Tees_Tanks: 217 (31.3%), Sweatshirts_Hoodies: 78 (11.3%)"
+97,cozy,326,Sweaters,0.3497,13,AMAN,"Sweaters: 114 (35.0%), Cardigans: 64 (19.6%), Sweatshirts_Hoodies: 42 (12.9%)"
+172,belt,209,Dresses,0.3493,14,AMAN,"Dresses: 73 (34.9%), Shorts: 42 (20.1%), Rompers_Jumpsuits: 26 (12.4%)"
+336,staples,86,Tees_Tanks,0.3488,14,AMAN,"Tees_Tanks: 30 (34.9%), Blouses_Shirts: 12 (14.0%), Sweatshirts_Hoodies: 8 (9.3%)"
+315,stretchy,130,Tees_Tanks,0.3462,12,AMAN,"Tees_Tanks: 45 (34.6%), Dresses: 24 (18.5%), Shorts: 13 (10.0%)"
+30,black,26,Dresses,0.3462,8,AMAN,"Dresses: 9 (34.6%), Blouses_Shirts: 3 (11.5%), Graphic_Tees: 3 (11.5%)"
+138,off-duty,256,Tees_Tanks,0.3438,16,AMAN,"Tees_Tanks: 88 (34.4%), Blouses_Shirts: 35 (13.7%), Pants: 30 (11.7%)"
+273,moto,108,Jackets_Coats,0.3426,16,AMAN,"Jackets_Coats: 37 (34.3%), Dresses: 16 (14.8%), Tees_Tanks: 13 (12.0%)"
+120,cuffs,287,Blouses_Shirts,0.3415,14,AMAN,"Blouses_Shirts: 98 (34.1%), Pants: 50 (17.4%), Jackets_Coats: 31 (10.8%)"
+149,feminine,247,Dresses,0.3401,11,AMAN,"Dresses: 84 (34.0%), Blouses_Shirts: 81 (32.8%), Tees_Tanks: 28 (11.3%)"
+248,booties,100,Dresses,0.34,14,AMAN,"Dresses: 34 (34.0%), Sweaters: 12 (12.0%), Skirts: 9 (9.0%)"
+93,flirty,327,Dresses,0.3394,11,AMAN,"Dresses: 111 (33.9%), Blouses_Shirts: 75 (22.9%), Tees_Tanks: 55 (16.8%)"
+306,match,115,Tees_Tanks,0.3391,15,AMAN,"Tees_Tanks: 39 (33.9%), Blouses_Shirts: 22 (19.1%), Shorts: 11 (9.6%)"
+52,neck,3078,Tees_Tanks,0.3379,14,AMAN,"Tees_Tanks: 1040 (33.8%), Dresses: 693 (22.5%), Blouses_Shirts: 654 (21.2%)"
+219,elegant,148,Dresses,0.3378,11,AMAN,"Dresses: 50 (33.8%), Blouses_Shirts: 50 (33.8%), Tees_Tanks: 18 (12.2%)"
+23,zipper,1132,Dresses,0.3366,15,AMAN,"Dresses: 381 (33.7%), Skirts: 136 (12.0%), Blouses_Shirts: 122 (10.8%)"
+327,crisscross,125,Dresses,0.336,7,AMAN,"Dresses: 42 (33.6%), Blouses_Shirts: 34 (27.2%), Tees_Tanks: 24 (19.2%)"
+231,boyfriend,131,Blouses_Shirts,0.3359,13,AMAN,"Blouses_Shirts: 44 (33.6%), Tees_Tanks: 34 (26.0%), Jackets_Coats: 13 (9.9%)"
+355,girly,84,Dresses,0.3333,10,AMAN,"Dresses: 28 (33.3%), Tees_Tanks: 15 (17.9%), Blouses_Shirts: 13 (15.5%)"
+354,brunch,96,Dresses,0.3333,14,AMAN,"Dresses: 32 (33.3%), Blouses_Shirts: 20 (20.8%), Shorts: 11 (11.5%)"
+312,street,298,Tees_Tanks,0.3322,16,AMAN,"Tees_Tanks: 99 (33.2%), Pants: 51 (17.1%), Shorts: 27 (9.1%)"
+301,stripe,867,Tees_Tanks,0.3322,16,AMAN,"Tees_Tanks: 288 (33.2%), Dresses: 123 (14.2%), Blouses_Shirts: 91 (10.5%)"
+176,boho,209,Blouses_Shirts,0.3301,13,AMAN,"Blouses_Shirts: 69 (33.0%), Dresses: 43 (20.6%), Tees_Tanks: 30 (14.4%)"
+39,bust,605,Dresses,0.3289,9,AMAN,"Dresses: 199 (32.9%), Blouses_Shirts: 194 (32.1%), Tees_Tanks: 109 (18.0%)"
+26,floral,869,Blouses_Shirts,0.328,14,AMAN,"Blouses_Shirts: 285 (32.8%), Dresses: 243 (28.0%), Tees_Tanks: 120 (13.8%)"
+260,slouchy,113,Tees_Tanks,0.3274,13,AMAN,"Tees_Tanks: 37 (32.7%), Sweaters: 29 (25.7%), Cardigans: 13 (11.5%)"
+193,vented,194,Tees_Tanks,0.3247,14,AMAN,"Tees_Tanks: 63 (32.5%), Blouses_Shirts: 39 (20.1%), Sweaters: 19 (9.8%)"
+159,trousers,185,Blouses_Shirts,0.3243,14,AMAN,"Blouses_Shirts: 60 (32.4%), Pants: 50 (27.0%), Tees_Tanks: 38 (20.5%)"
+173,printed,198,Tees_Tanks,0.3232,15,AMAN,"Tees_Tanks: 64 (32.3%), Blouses_Shirts: 25 (12.6%), Shorts: 20 (10.1%)"
+82,stripes,372,Tees_Tanks,0.3226,15,AMAN,"Tees_Tanks: 120 (32.3%), Blouses_Shirts: 39 (10.5%), Dresses: 39 (10.5%)"
+187,leggings,143,Tees_Tanks,0.3217,11,AMAN,"Tees_Tanks: 46 (32.2%), Blouses_Shirts: 26 (18.2%), Sweaters: 25 (17.5%)"
+213,halter,143,Tees_Tanks,0.3217,7,AMAN,"Tees_Tanks: 46 (32.2%), Dresses: 38 (26.6%), Blouses_Shirts: 35 (24.5%)"
+15,round,1475,Tees_Tanks,0.3214,17,AMAN,"Tees_Tanks: 474 (32.1%), Blouses_Shirts: 331 (22.4%), Dresses: 301 (20.4%)"
+70,soft,705,Tees_Tanks,0.3206,15,AMAN,"Tees_Tanks: 226 (32.1%), Sweaters: 75 (10.6%), Dresses: 69 (9.8%)"
+2,woven,3879,Blouses_Shirts,0.3199,17,AMAN,"Blouses_Shirts: 1241 (32.0%), Dresses: 730 (18.8%), Shorts: 455 (11.7%)"
+31,forever,685,Blouses_Shirts,0.3197,16,AMAN,"Blouses_Shirts: 219 (32.0%), Dresses: 129 (18.8%), Tees_Tanks: 74 (10.8%)"
+277,stretch-knit,113,Dresses,0.3186,11,AMAN,"Dresses: 36 (31.9%), Tees_Tanks: 32 (28.3%), Skirts: 14 (12.4%)"
+38,drawstring,607,Pants,0.318,13,AMAN,"Pants: 193 (31.8%), Shorts: 169 (27.8%), Sweatshirts_Hoodies: 76 (12.5%)"
+142,cuffed,259,Shorts,0.3166,14,AMAN,"Shorts: 82 (31.7%), Tees_Tanks: 69 (26.6%), Blouses_Shirts: 34 (13.1%)"
+148,slant,627,Pants,0.3158,16,AMAN,"Pants: 198 (31.6%), Shorts: 164 (26.2%), Rompers_Jumpsuits: 122 (19.5%)"
+323,flared,86,Dresses,0.314,11,AMAN,"Dresses: 27 (31.4%), Blouses_Shirts: 16 (18.6%), Pants: 14 (16.3%)"
+168,stretch,438,Tees_Tanks,0.3128,15,AMAN,"Tees_Tanks: 137 (31.3%), Dresses: 106 (24.2%), Skirts: 41 (9.4%)"
+185,pleated,192,Dresses,0.3125,10,AMAN,"Dresses: 60 (31.2%), Blouses_Shirts: 51 (26.6%), Skirts: 20 (10.4%)"
+338,draped,84,Cardigans,0.3095,9,AMAN,"Cardigans: 26 (31.0%), Jackets_Coats: 18 (21.4%), Sweaters: 17 (20.2%)"
+49,basic,706,Tees_Tanks,0.3088,16,AMAN,"Tees_Tanks: 218 (30.9%), Blouses_Shirts: 213 (30.2%), Dresses: 57 (8.1%)"
+7,spandex,1980,Tees_Tanks,0.3086,17,AMAN,"Tees_Tanks: 611 (30.9%), Dresses: 452 (22.8%), Shorts: 143 (7.2%)"
+121,cutoffs,266,Shorts,0.3083,10,AMAN,"Shorts: 82 (30.8%), Blouses_Shirts: 73 (27.4%), Tees_Tanks: 71 (26.7%)"
+99,essential,482,Tees_Tanks,0.3071,17,AMAN,"Tees_Tanks: 148 (30.7%), Blouses_Shirts: 63 (13.1%), Pants: 40 (8.3%)"
+24,ribbed,821,Tees_Tanks,0.3069,14,AMAN,"Tees_Tanks: 252 (30.7%), Sweaters: 204 (24.8%), Sweatshirts_Hoodies: 100 (12.2%)"
+41,shoulder,669,Tees_Tanks,0.3049,12,AMAN,"Tees_Tanks: 204 (30.5%), Blouses_Shirts: 154 (23.0%), Dresses: 147 (22.0%)"
+257,chambray,116,Blouses_Shirts,0.3017,10,AMAN,"Blouses_Shirts: 35 (30.2%), Shorts: 18 (15.5%), Sweaters: 15 (12.9%)"
+304,festival,136,Blouses_Shirts,0.3015,10,AMAN,"Blouses_Shirts: 41 (30.1%), Shorts: 27 (19.9%), Tees_Tanks: 20 (14.7%)"
+13,lined,4353,Blouses_Shirts,0.2989,17,AMAN,"Blouses_Shirts: 1301 (29.9%), Dresses: 1167 (26.8%), Jackets_Coats: 320 (7.4%)"
+313,swingy,94,Blouses_Shirts,0.2979,11,AMAN,"Blouses_Shirts: 28 (29.8%), Dresses: 24 (25.5%), Tees_Tanks: 12 (12.8%)"
+269,on-seam,118,Shorts,0.2966,10,AMAN,"Shorts: 35 (29.7%), Jackets_Coats: 28 (23.7%), Pants: 20 (16.9%)"
+171,white,34,Tees_Tanks,0.2941,12,AMAN,"Tees_Tanks: 10 (29.4%), Blouses_Shirts: 9 (26.5%), Sweatshirts_Hoodies: 3 (8.8%)"
+237,dolman,143,Blouses_Shirts,0.2937,9,AMAN,"Blouses_Shirts: 42 (29.4%), Tees_Tanks: 34 (23.8%), Sweaters: 24 (16.8%)"
+112,longline,293,Tees_Tanks,0.2935,11,AMAN,"Tees_Tanks: 86 (29.4%), Jackets_Coats: 44 (15.0%), Cardigans: 41 (14.0%)"
+71,pretty,424,Blouses_Shirts,0.2925,15,AMAN,"Blouses_Shirts: 124 (29.2%), Dresses: 102 (24.1%), Tees_Tanks: 55 (13.0%)"
+322,vintage-inspired,89,Blouses_Shirts,0.2921,12,AMAN,"Blouses_Shirts: 26 (29.2%), Tees_Tanks: 18 (20.2%), Dresses: 17 (19.1%)"
+285,mini,538,Dresses,0.2918,14,AMAN,"Dresses: 157 (29.2%), Blouses_Shirts: 130 (24.2%), Skirts: 81 (15.1%)"
+320,cap,175,Dresses,0.2914,12,AMAN,"Dresses: 51 (29.1%), Blouses_Shirts: 46 (26.3%), Tees_Tanks: 36 (20.6%)"
+291,sophisticated,103,Blouses_Shirts,0.2913,12,AMAN,"Blouses_Shirts: 30 (29.1%), Dresses: 20 (19.4%), Rompers_Jumpsuits: 10 (9.7%)"
+205,slits,158,Dresses,0.2911,11,AMAN,"Dresses: 46 (29.1%), Tees_Tanks: 41 (25.9%), Blouses_Shirts: 38 (24.1%)"
+27,denim,636,Shorts,0.2909,16,AMAN,"Shorts: 185 (29.1%), Blouses_Shirts: 96 (15.1%), Tees_Tanks: 93 (14.6%)"
+59,lace,759,Dresses,0.2899,15,AMAN,"Dresses: 220 (29.0%), Blouses_Shirts: 193 (25.4%), Tees_Tanks: 134 (17.7%)"
+116,exposed,294,Dresses,0.2891,11,AMAN,"Dresses: 85 (28.9%), Blouses_Shirts: 74 (25.2%), Skirts: 46 (15.6%)"
+350,versatility,80,Tees_Tanks,0.2875,13,AMAN,"Tees_Tanks: 23 (28.7%), Blouses_Shirts: 16 (20.0%), Dresses: 11 (13.8%)"
+61,relaxed,469,Tees_Tanks,0.2857,16,AMAN,"Tees_Tanks: 134 (28.6%), Blouses_Shirts: 80 (17.1%), Pants: 41 (8.7%)"
+329,dot,155,Blouses_Shirts,0.2839,13,AMAN,"Blouses_Shirts: 44 (28.4%), Dresses: 28 (18.1%), Tees_Tanks: 26 (16.8%)"
+224,blend,234,Tees_Tanks,0.2821,16,AMAN,"Tees_Tanks: 66 (28.2%), Shorts: 26 (11.1%), Graphic_Tees: 21 (9.0%)"
+104,down,683,Blouses_Shirts,0.2796,17,AMAN,"Blouses_Shirts: 191 (28.0%), Dresses: 124 (18.2%), Sweaters: 63 (9.2%)"
+325,geo,226,Blouses_Shirts,0.2788,13,AMAN,"Blouses_Shirts: 63 (27.9%), Dresses: 43 (19.0%), Tees_Tanks: 33 (14.6%)"
+276,panel,494,Blouses_Shirts,0.2773,16,AMAN,"Blouses_Shirts: 137 (27.7%), Tees_Tanks: 103 (20.9%), Dresses: 99 (20.0%)"
+226,elevated,141,Tees_Tanks,0.2766,14,AMAN,"Tees_Tanks: 39 (27.7%), Blouses_Shirts: 30 (21.3%), Dresses: 14 (9.9%)"
+167,marled,188,Sweaters,0.2766,12,AMAN,"Sweaters: 52 (27.7%), Tees_Tanks: 48 (25.5%), Cardigans: 20 (10.6%)"
+155,femme,246,Dresses,0.2764,14,AMAN,"Dresses: 68 (27.6%), Blouses_Shirts: 66 (26.8%), Tees_Tanks: 35 (14.2%)"
+78,faux,351,Jackets_Coats,0.2764,15,AMAN,"Jackets_Coats: 97 (27.6%), Dresses: 65 (18.5%), Blouses_Shirts: 28 (8.0%)"
+243,vibrant,132,Dresses,0.2727,13,AMAN,"Dresses: 36 (27.3%), Tees_Tanks: 22 (16.7%), Blouses_Shirts: 20 (15.2%)"
+249,layered,132,Blouses_Shirts,0.2727,12,AMAN,"Blouses_Shirts: 36 (27.3%), Dresses: 32 (24.2%), Tees_Tanks: 28 (21.2%)"
+220,rose,144,Dresses,0.2708,12,AMAN,"Dresses: 39 (27.1%), Tees_Tanks: 29 (20.1%), Blouses_Shirts: 29 (20.1%)"
+132,flat,672,Dresses,0.2708,15,AMAN,"Dresses: 182 (27.1%), Tees_Tanks: 132 (19.6%), Blouses_Shirts: 75 (11.2%)"
+122,midweight,285,Jackets_Coats,0.2702,15,AMAN,"Jackets_Coats: 77 (27.0%), Sweaters: 57 (20.0%), Dresses: 43 (15.1%)"
+268,loose,142,Blouses_Shirts,0.2676,15,AMAN,"Blouses_Shirts: 38 (26.8%), Tees_Tanks: 29 (20.4%), Dresses: 19 (13.4%)"
+73,simple,400,Tees_Tanks,0.2675,15,AMAN,"Tees_Tanks: 107 (26.8%), Dresses: 78 (19.5%), Blouses_Shirts: 69 (17.2%)"
+63,shirt,729,Blouses_Shirts,0.2675,16,AMAN,"Blouses_Shirts: 195 (26.7%), Sweatshirts_Hoodies: 131 (18.0%), Sweaters: 96 (13.2%)"
+4,cotton,3364,Tees_Tanks,0.2663,17,AMAN,"Tees_Tanks: 896 (26.6%), Shorts: 397 (11.8%), Blouses_Shirts: 361 (10.7%)"
+156,mesh,252,Blouses_Shirts,0.2659,14,AMAN,"Blouses_Shirts: 67 (26.6%), Tees_Tanks: 64 (25.4%), Dresses: 56 (22.2%)"
+316,boots,79,Sweaters,0.2658,13,AMAN,"Sweaters: 21 (26.6%), Dresses: 20 (25.3%), Tees_Tanks: 8 (10.1%)"
+179,welt,174,Pants,0.2644,16,AMAN,"Pants: 46 (26.4%), Shorts: 45 (25.9%), Jackets_Coats: 44 (25.3%)"
+151,shoulders,236,Blouses_Shirts,0.2627,10,AMAN,"Blouses_Shirts: 62 (26.3%), Dresses: 56 (23.7%), Tees_Tanks: 45 (19.1%)"
+195,refined,162,Blouses_Shirts,0.2593,14,AMAN,"Blouses_Shirts: 42 (25.9%), Dresses: 30 (18.5%), Pants: 19 (11.7%)"
+88,closet,357,Tees_Tanks,0.2577,16,AMAN,"Tees_Tanks: 92 (25.8%), Blouses_Shirts: 68 (19.0%), Dresses: 49 (13.7%)"
+113,polished,295,Blouses_Shirts,0.2576,13,AMAN,"Blouses_Shirts: 76 (25.8%), Dresses: 54 (18.3%), Pants: 31 (10.5%)"
+230,smocked,136,Dresses,0.2574,8,AMAN,"Dresses: 35 (25.7%), Blouses_Shirts: 29 (21.3%), Shorts: 22 (16.2%)"
+300,paisley,105,Blouses_Shirts,0.2571,10,AMAN,"Blouses_Shirts: 27 (25.7%), Dresses: 24 (22.9%), Rompers_Jumpsuits: 15 (14.3%)"
+108,every,856,Tees_Tanks,0.257,17,AMAN,"Tees_Tanks: 220 (25.7%), Dresses: 121 (14.1%), Blouses_Shirts: 117 (13.7%)"
+91,abstract,359,Blouses_Shirts,0.2563,12,AMAN,"Blouses_Shirts: 92 (25.6%), Dresses: 86 (24.0%), Tees_Tanks: 37 (10.3%)"
+130,viscose,272,Tees_Tanks,0.2537,13,AMAN,"Tees_Tanks: 69 (25.4%), Dresses: 57 (21.0%), Blouses_Shirts: 49 (18.0%)"
+236,worn,198,Tees_Tanks,0.2525,16,AMAN,"Tees_Tanks: 50 (25.3%), Dresses: 27 (13.6%), Blouses_Shirts: 25 (12.6%)"
+310,tonal,103,Blouses_Shirts,0.2524,15,AMAN,"Blouses_Shirts: 26 (25.2%), Dresses: 19 (18.4%), Tees_Tanks: 12 (11.7%)"
+280,bright,127,Blouses_Shirts,0.252,16,AMAN,"Blouses_Shirts: 32 (25.2%), Tees_Tanks: 20 (15.7%), Dresses: 16 (12.6%)"
+46,contrast,565,Tees_Tanks,0.2513,16,AMAN,"Tees_Tanks: 142 (25.1%), Blouses_Shirts: 88 (15.6%), Dresses: 74 (13.1%)"
+58,cream,12,Tees_Tanks,0.25,8,AMAN,"Tees_Tanks: 3 (25.0%), Blouses_Shirts: 2 (16.7%), Shorts: 2 (16.7%)"
+292,luxe,108,Blouses_Shirts,0.25,10,AMAN,"Blouses_Shirts: 27 (25.0%), Jackets_Coats: 26 (24.1%), Dresses: 19 (17.6%)"
+216,drapey,140,Blouses_Shirts,0.25,12,AMAN,"Blouses_Shirts: 35 (25.0%), Tees_Tanks: 27 (19.3%), Cardigans: 16 (11.4%)"
+89,staple,426,Tees_Tanks,0.2488,17,AMAN,"Tees_Tanks: 106 (24.9%), Blouses_Shirts: 68 (16.0%), Shorts: 43 (10.1%)"
+265,girl,366,Dresses,0.2486,14,AMAN,"Dresses: 91 (24.9%), Blouses_Shirts: 62 (16.9%), Tees_Tanks: 53 (14.5%)"
+254,edgy,125,Tees_Tanks,0.248,15,AMAN,"Tees_Tanks: 31 (24.8%), Dresses: 20 (16.0%), Blouses_Shirts: 19 (15.2%)"
+32,nylon,665,Blouses_Shirts,0.2451,14,AMAN,"Blouses_Shirts: 163 (24.5%), Dresses: 145 (21.8%), Tees_Tanks: 110 (16.5%)"
+17,elasticized,1106,Pants,0.245,12,AMAN,"Pants: 271 (24.5%), Dresses: 233 (21.1%), Shorts: 204 (18.4%)"
+175,versatile,192,Tees_Tanks,0.2448,15,AMAN,"Tees_Tanks: 47 (24.5%), Dresses: 35 (18.2%), Blouses_Shirts: 35 (18.2%)"
+311,call,482,Blouses_Shirts,0.2448,17,AMAN,"Blouses_Shirts: 118 (24.5%), Tees_Tanks: 90 (18.7%), Dresses: 74 (15.4%)"
+107,great,308,Tees_Tanks,0.2435,16,AMAN,"Tees_Tanks: 75 (24.4%), Blouses_Shirts: 46 (14.9%), Dresses: 38 (12.3%)"
+177,panels,181,Blouses_Shirts,0.2431,16,AMAN,"Blouses_Shirts: 44 (24.3%), Dresses: 33 (18.2%), Tees_Tanks: 27 (14.9%)"
+271,polish,413,Blouses_Shirts,0.2421,15,AMAN,"Blouses_Shirts: 100 (24.2%), Dresses: 73 (17.7%), Pants: 50 (12.1%)"
+186,warm-weather,170,Tees_Tanks,0.2412,13,AMAN,"Tees_Tanks: 41 (24.1%), Blouses_Shirts: 37 (21.8%), Dresses: 29 (17.1%)"
+317,line,5651,Blouses_Shirts,0.2412,17,AMAN,"Blouses_Shirts: 1363 (24.1%), Dresses: 1232 (21.8%), Tees_Tanks: 975 (17.3%)"
+158,distressed,193,Shorts,0.2383,14,AMAN,"Shorts: 46 (23.8%), Tees_Tanks: 38 (19.7%), Blouses_Shirts: 33 (17.1%)"
+127,skinny,244,Denim,0.2377,13,AMAN,"Denim: 58 (23.8%), Leggings: 36 (14.8%), Blouses_Shirts: 35 (14.3%)"
+228,tees,135,Tees_Tanks,0.237,14,AMAN,"Tees_Tanks: 32 (23.7%), Shorts: 28 (20.7%), Pants: 16 (11.9%)"
+68,design,537,Tees_Tanks,0.2365,16,AMAN,"Tees_Tanks: 127 (23.6%), Blouses_Shirts: 100 (18.6%), Dresses: 78 (14.5%)"
+69,touch,513,Blouses_Shirts,0.2359,16,AMAN,"Blouses_Shirts: 121 (23.6%), Dresses: 91 (17.7%), Tees_Tanks: 77 (15.0%)"
+244,dressed,136,Dresses,0.2353,15,AMAN,"Dresses: 32 (23.5%), Blouses_Shirts: 23 (16.9%), Tees_Tanks: 23 (16.9%)"
+6,rayon,2595,Tees_Tanks,0.2343,17,AMAN,"Tees_Tanks: 608 (23.4%), Blouses_Shirts: 552 (21.3%), Dresses: 505 (19.5%)"
+55,zip,1645,Dresses,0.2322,16,AMAN,"Dresses: 382 (23.2%), Shorts: 311 (18.9%), Pants: 161 (9.8%)"
+274,paired,108,Blouses_Shirts,0.2315,13,AMAN,"Blouses_Shirts: 25 (23.1%), Tees_Tanks: 18 (16.7%), Dresses: 13 (12.0%)"
+54,cool,609,Tees_Tanks,0.2299,16,AMAN,"Tees_Tanks: 140 (23.0%), Shorts: 78 (12.8%), Blouses_Shirts: 64 (10.5%)"
+87,effortless,531,Blouses_Shirts,0.2298,17,AMAN,"Blouses_Shirts: 122 (23.0%), Dresses: 110 (20.7%), Tees_Tanks: 86 (16.2%)"
+289,stand,375,Tees_Tanks,0.2293,16,AMAN,"Tees_Tanks: 86 (22.9%), Blouses_Shirts: 56 (14.9%), Dresses: 55 (14.7%)"
+144,bold,258,Tees_Tanks,0.2287,14,AMAN,"Tees_Tanks: 59 (22.9%), Dresses: 40 (15.5%), Blouses_Shirts: 33 (12.8%)"
+50,makes,538,Tees_Tanks,0.2286,16,AMAN,"Tees_Tanks: 123 (22.9%), Blouses_Shirts: 101 (18.8%), Dresses: 81 (15.1%)"
+101,tailored,302,Blouses_Shirts,0.2285,16,AMAN,"Blouses_Shirts: 69 (22.8%), Shorts: 42 (13.9%), Pants: 37 (12.3%)"
+308,wide,180,Tees_Tanks,0.2278,14,AMAN,"Tees_Tanks: 41 (22.8%), Pants: 39 (21.7%), Rompers_Jumpsuits: 32 (17.8%)"
+60,casual,514,Tees_Tanks,0.2276,16,AMAN,"Tees_Tanks: 117 (22.8%), Blouses_Shirts: 70 (13.6%), Dresses: 65 (12.6%)"
+62,fabric,1100,Blouses_Shirts,0.2273,16,AMAN,"Blouses_Shirts: 250 (22.7%), Tees_Tanks: 213 (19.4%), Dresses: 171 (15.5%)"
+110,pieces,292,Tees_Tanks,0.226,14,AMAN,"Tees_Tanks: 66 (22.6%), Blouses_Shirts: 57 (19.5%), Dresses: 37 (12.7%)"
+0,lightweight,5004,Tees_Tanks,0.2254,17,AMAN,"Tees_Tanks: 1128 (22.5%), Blouses_Shirts: 901 (18.0%), Dresses: 730 (14.6%)"
+218,addition,151,Tees_Tanks,0.2252,16,AMAN,"Tees_Tanks: 34 (22.5%), Blouses_Shirts: 32 (21.2%), Dresses: 17 (11.3%)"
+357,polka,80,Blouses_Shirts,0.225,12,AMAN,"Blouses_Shirts: 18 (22.5%), Tees_Tanks: 15 (18.8%), Dresses: 14 (17.5%)"
+198,light,5269,Tees_Tanks,0.2238,17,AMAN,"Tees_Tanks: 1179 (22.4%), Blouses_Shirts: 946 (18.0%), Dresses: 759 (14.4%)"
+65,comfy,532,Tees_Tanks,0.2237,15,AMAN,"Tees_Tanks: 119 (22.4%), Shorts: 79 (14.8%), Dresses: 62 (11.7%)"
+141,throw,372,Dresses,0.2231,16,AMAN,"Dresses: 83 (22.3%), Tees_Tanks: 62 (16.7%), Blouses_Shirts: 51 (13.7%)"
+348,tailoring,81,Shorts,0.2222,13,AMAN,"Shorts: 18 (22.2%), Blouses_Shirts: 12 (14.8%), Jackets_Coats: 10 (12.3%)"
+114,vibe,379,Tees_Tanks,0.2216,16,AMAN,"Tees_Tanks: 84 (22.2%), Blouses_Shirts: 75 (19.8%), Dresses: 57 (15.0%)"
+37,fabrication,632,Tees_Tanks,0.2215,16,AMAN,"Tees_Tanks: 140 (22.2%), Blouses_Shirts: 127 (20.1%), Dresses: 99 (15.7%)"
+326,complement,131,Blouses_Shirts,0.2214,14,AMAN,"Blouses_Shirts: 29 (22.1%), Tees_Tanks: 27 (20.6%), Dresses: 26 (19.8%)"
+295,lyocell,104,Blouses_Shirts,0.2212,13,AMAN,"Blouses_Shirts: 23 (22.1%), Pants: 15 (14.4%), Rompers_Jumpsuits: 15 (14.4%)"
+103,comfortable,317,Tees_Tanks,0.2208,16,AMAN,"Tees_Tanks: 70 (22.1%), Dresses: 44 (13.9%), Pants: 43 (13.6%)"
+128,subtle,275,Dresses,0.2182,16,AMAN,"Dresses: 60 (21.8%), Tees_Tanks: 57 (20.7%), Blouses_Shirts: 49 (17.8%)"
+290,fall,133,Sweaters,0.218,16,AMAN,"Sweaters: 29 (21.8%), Blouses_Shirts: 27 (20.3%), Dresses: 24 (18.0%)"
+202,tribal,221,Dresses,0.2172,13,AMAN,"Dresses: 48 (21.7%), Tees_Tanks: 37 (16.7%), Blouses_Shirts: 31 (14.0%)"
+296,metallic,83,Dresses,0.2169,11,AMAN,"Dresses: 18 (21.7%), Tees_Tanks: 17 (20.5%), Sweaters: 13 (15.7%)"
+189,traditional,166,Blouses_Shirts,0.2169,16,AMAN,"Blouses_Shirts: 36 (21.7%), Tees_Tanks: 20 (12.0%), Pants: 16 (9.6%)"
+109,want,309,Tees_Tanks,0.2168,16,AMAN,"Tees_Tanks: 67 (21.7%), Dresses: 42 (13.6%), Blouses_Shirts: 32 (10.4%)"
+331,pleats,88,Skirts,0.2159,6,AMAN,"Skirts: 19 (21.6%), Dresses: 19 (21.6%), Blouses_Shirts: 15 (17.0%)"
+307,streamlined,93,Jackets_Coats,0.2151,13,AMAN,"Jackets_Coats: 20 (21.5%), Dresses: 19 (20.4%), Pants: 13 (14.0%)"
+238,fresh,200,Blouses_Shirts,0.215,15,AMAN,"Blouses_Shirts: 43 (21.5%), Tees_Tanks: 41 (20.5%), Dresses: 40 (20.0%)"
+10,pockets,1346,Pants,0.2147,16,AMAN,"Pants: 289 (21.5%), Jackets_Coats: 277 (20.6%), Shorts: 275 (20.4%)"
+247,sunny,140,Blouses_Shirts,0.2143,14,AMAN,"Blouses_Shirts: 30 (21.4%), Tees_Tanks: 25 (17.9%), Shorts: 22 (15.7%)"
+153,modern,253,Blouses_Shirts,0.2134,16,AMAN,"Blouses_Shirts: 54 (21.3%), Dresses: 45 (17.8%), Tees_Tanks: 32 (12.6%)"
+123,textured,286,Dresses,0.2133,13,AMAN,"Dresses: 61 (21.3%), Blouses_Shirts: 52 (18.2%), Tees_Tanks: 37 (12.9%)"
+314,fitted,437,Tees_Tanks,0.2128,17,AMAN,"Tees_Tanks: 93 (21.3%), Blouses_Shirts: 76 (17.4%), Dresses: 48 (11.0%)"
+347,sneakers,71,Tees_Tanks,0.2113,11,AMAN,"Tees_Tanks: 15 (21.1%), Pants: 15 (21.1%), Dresses: 13 (18.3%)"
+47,little,520,Tees_Tanks,0.2096,15,AMAN,"Tees_Tanks: 109 (21.0%), Blouses_Shirts: 107 (20.6%), Dresses: 92 (17.7%)"
+178,need,229,Dresses,0.2096,15,AMAN,"Dresses: 48 (21.0%), Tees_Tanks: 40 (17.5%), Blouses_Shirts: 34 (14.8%)"
+139,summer,368,Tees_Tanks,0.2092,15,AMAN,"Tees_Tanks: 77 (20.9%), Shorts: 74 (20.1%), Dresses: 68 (18.5%)"
+272,standout,115,Tees_Tanks,0.2087,14,AMAN,"Tees_Tanks: 24 (20.9%), Blouses_Shirts: 18 (15.7%), Dresses: 15 (13.0%)"
+16,love,1682,Blouses_Shirts,0.2087,16,AMAN,"Blouses_Shirts: 351 (20.9%), Tees_Tanks: 298 (17.7%), Dresses: 285 (16.9%)"
+44,pattern,682,Blouses_Shirts,0.2082,16,AMAN,"Blouses_Shirts: 142 (20.8%), Tees_Tanks: 127 (18.6%), Dresses: 114 (16.7%)"
+9,print,1905,Dresses,0.2073,17,AMAN,"Dresses: 395 (20.7%), Tees_Tanks: 381 (20.0%), Blouses_Shirts: 366 (19.2%)"
+57,comfort,825,Tees_Tanks,0.2061,16,AMAN,"Tees_Tanks: 170 (20.6%), Pants: 142 (17.2%), Dresses: 104 (12.6%)"
+321,pop,170,Blouses_Shirts,0.2059,14,AMAN,"Blouses_Shirts: 35 (20.6%), Tees_Tanks: 30 (17.6%), Sweaters: 23 (13.5%)"
+284,flair,102,Tees_Tanks,0.2059,12,AMAN,"Tees_Tanks: 21 (20.6%), Blouses_Shirts: 20 (19.6%), Dresses: 16 (15.7%)"
+33,pocket,2165,Shorts,0.2051,17,AMAN,"Shorts: 444 (20.5%), Pants: 313 (14.5%), Jackets_Coats: 281 (13.0%)"
+242,vibes,117,Tees_Tanks,0.2051,13,AMAN,"Tees_Tanks: 24 (20.5%), Dresses: 24 (20.5%), Blouses_Shirts: 20 (17.1%)"
+19,trim,1194,Tees_Tanks,0.2044,17,AMAN,"Tees_Tanks: 244 (20.4%), Blouses_Shirts: 221 (18.5%), Sweaters: 199 (16.7%)"
+188,cute,206,Tees_Tanks,0.2039,15,AMAN,"Tees_Tanks: 42 (20.4%), Shorts: 30 (14.6%), Dresses: 28 (13.6%)"
+45,jeans,530,Denim,0.2038,16,AMAN,"Denim: 108 (20.4%), Tees_Tanks: 106 (20.0%), Blouses_Shirts: 102 (19.2%)"
+125,appeal,285,Tees_Tanks,0.2035,16,AMAN,"Tees_Tanks: 58 (20.4%), Blouses_Shirts: 49 (17.2%), Dresses: 49 (17.2%)"
+12,classic,1440,Tees_Tanks,0.2028,17,AMAN,"Tees_Tanks: 292 (20.3%), Blouses_Shirts: 214 (14.9%), Sweaters: 167 (11.6%)"
+297,sartorial,158,Blouses_Shirts,0.2025,15,AMAN,"Blouses_Shirts: 32 (20.3%), Tees_Tanks: 25 (15.8%), Dresses: 21 (13.3%)"
+233,vintage,233,Tees_Tanks,0.2017,14,AMAN,"Tees_Tanks: 47 (20.2%), Blouses_Shirts: 41 (17.6%), Dresses: 30 (12.9%)"
+124,eye-catching,278,Blouses_Shirts,0.2014,14,AMAN,"Blouses_Shirts: 56 (20.1%), Tees_Tanks: 51 (18.3%), Dresses: 39 (14.0%)"
+84,leather,338,Dresses,0.2012,15,AMAN,"Dresses: 68 (20.1%), Jackets_Coats: 59 (17.5%), Blouses_Shirts: 36 (10.7%)"
+94,laid-back,325,Tees_Tanks,0.2,16,AMAN,"Tees_Tanks: 65 (20.0%), Blouses_Shirts: 64 (19.7%), Pants: 33 (10.2%)"
+53,patch,525,Blouses_Shirts,0.2,16,AMAN,"Blouses_Shirts: 105 (20.0%), Tees_Tanks: 74 (14.1%), Shorts: 66 (12.6%)"
+241,throughout,130,Blouses_Shirts,0.2,16,AMAN,"Blouses_Shirts: 26 (20.0%), Tees_Tanks: 25 (19.2%), Shorts: 14 (10.8%)"
+287,dresses,110,Jackets_Coats,0.2,11,AMAN,"Jackets_Coats: 22 (20.0%), Dresses: 18 (16.4%), Blouses_Shirts: 18 (16.4%)"
+183,beach,201,Dresses,0.199,12,AMAN,"Dresses: 40 (19.9%), Shorts: 37 (18.4%), Tees_Tanks: 33 (16.4%)"
+1,polyester,3803,Dresses,0.198,17,AMAN,"Dresses: 753 (19.8%), Tees_Tanks: 691 (18.2%), Blouses_Shirts: 687 (18.1%)"
+217,skin,446,Blouses_Shirts,0.1973,13,AMAN,"Blouses_Shirts: 88 (19.7%), Tees_Tanks: 80 (17.9%), Dresses: 63 (14.1%)"
+270,mix,239,Blouses_Shirts,0.1967,13,AMAN,"Blouses_Shirts: 47 (19.7%), Tees_Tanks: 41 (17.2%), Sweaters: 26 (10.9%)"
+80,wardrobe,394,Tees_Tanks,0.1954,16,AMAN,"Tees_Tanks: 77 (19.5%), Blouses_Shirts: 65 (16.5%), Dresses: 56 (14.2%)"
+360,southwestern,130,Tees_Tanks,0.1923,14,AMAN,"Tees_Tanks: 25 (19.2%), Blouses_Shirts: 20 (15.4%), Dresses: 20 (15.4%)"
+351,balance,125,Dresses,0.192,16,AMAN,"Dresses: 24 (19.2%), Blouses_Shirts: 21 (16.8%), Tees_Tanks: 17 (13.6%)"
+135,closure,292,Shorts,0.1918,14,AMAN,"Shorts: 56 (19.2%), Blouses_Shirts: 49 (16.8%), Jackets_Coats: 46 (15.8%)"
+345,running,80,Tees_Tanks,0.1875,14,AMAN,"Tees_Tanks: 15 (18.8%), Blouses_Shirts: 12 (15.0%), Pants: 10 (12.5%)"
+227,structured,155,Blouses_Shirts,0.1871,15,AMAN,"Blouses_Shirts: 29 (18.7%), Dresses: 27 (17.4%), Jackets_Coats: 20 (12.9%)"
+14,fit,1909,Tees_Tanks,0.1865,17,AMAN,"Tees_Tanks: 356 (18.6%), Dresses: 282 (14.8%), Blouses_Shirts: 269 (14.1%)"
+25,sleek,798,Tees_Tanks,0.1842,17,AMAN,"Tees_Tanks: 147 (18.4%), Dresses: 144 (18.0%), Blouses_Shirts: 120 (15.0%)"
+346,serious,131,Tees_Tanks,0.1832,14,AMAN,"Tees_Tanks: 24 (18.3%), Dresses: 18 (13.7%), Blouses_Shirts: 16 (12.2%)"
+232,covered,139,Blouses_Shirts,0.1799,12,AMAN,"Blouses_Shirts: 25 (18.0%), Dresses: 25 (18.0%), Tees_Tanks: 23 (16.5%)"
+143,outfit,650,Blouses_Shirts,0.1769,17,AMAN,"Blouses_Shirts: 115 (17.7%), Tees_Tanks: 106 (16.3%), Dresses: 63 (9.7%)"
+324,aesthetic,91,Tees_Tanks,0.1758,14,AMAN,"Tees_Tanks: 16 (17.6%), Dresses: 15 (16.5%), Blouses_Shirts: 14 (15.4%)"
+34,long-sleeved,639,Blouses_Shirts,0.1753,15,AMAN,"Blouses_Shirts: 112 (17.5%), Jackets_Coats: 111 (17.4%), Sweaters: 100 (15.6%)"
+161,oversized,189,Tees_Tanks,0.1746,15,AMAN,"Tees_Tanks: 33 (17.5%), Sweaters: 27 (14.3%), Jackets_Coats: 26 (13.8%)"
+51,chic,660,Blouses_Shirts,0.1727,15,AMAN,"Blouses_Shirts: 114 (17.3%), Tees_Tanks: 105 (15.9%), Dresses: 104 (15.8%)"
+214,timeless,140,Sweaters,0.1714,16,AMAN,"Sweaters: 24 (17.1%), Blouses_Shirts: 22 (15.7%), Jackets_Coats: 20 (14.3%)"
+152,crisp,234,Blouses_Shirts,0.1709,15,AMAN,"Blouses_Shirts: 40 (17.1%), Shorts: 40 (17.1%), Sweaters: 31 (13.2%)"
+85,warm,617,Tees_Tanks,0.1702,17,AMAN,"Tees_Tanks: 105 (17.0%), Blouses_Shirts: 97 (15.7%), Dresses: 72 (11.7%)"
+332,rust,66,Blouses_Shirts,0.1667,15,AMAN,"Blouses_Shirts: 11 (16.7%), Dresses: 10 (15.2%), Tees_Tanks: 9 (13.6%)"
+288,ensemble,128,Blouses_Shirts,0.1641,15,AMAN,"Blouses_Shirts: 21 (16.4%), Dresses: 20 (15.6%), Jackets_Coats: 17 (13.3%)"
+252,tops,182,Tees_Tanks,0.1593,15,AMAN,"Tees_Tanks: 29 (15.9%), Pants: 29 (15.9%), Blouses_Shirts: 23 (12.6%)"
+330,mixed,95,Shorts,0.1579,12,AMAN,"Shorts: 15 (15.8%), Blouses_Shirts: 15 (15.8%), Tees_Tanks: 14 (14.7%)"
+160,slim,223,Sweaters,0.157,17,AMAN,"Sweaters: 35 (15.7%), Pants: 32 (14.3%), Denim: 30 (13.5%)"
+208,stylish,157,Tees_Tanks,0.1529,17,AMAN,"Tees_Tanks: 24 (15.3%), Pants: 19 (12.1%), Jackets_Coats: 17 (10.8%)"
+255,sharp,156,Pants,0.1346,16,AMAN,"Pants: 21 (13.5%), Sweaters: 20 (12.8%), Shorts: 19 (12.2%)"
+425,front,0,N/A,0.0,0,NO_DATA,
+413,medium,0,N/A,0.0,0,NO_DATA,
+427,skater,0,N/A,0.0,0,NO_DATA,
+428,night,0,N/A,0.0,0,NO_DATA,
+429,adjustable,0,N/A,0.0,0,NO_DATA,
+424,cutout,0,N/A,0.0,0,NO_DATA,
+423,pretty,0,N/A,0.0,0,NO_DATA,
+430,contrast,0,N/A,0.0,0,NO_DATA,
+422,zippered,0,N/A,0.0,0,NO_DATA,
+431,peasant,0,N/A,0.0,0,NO_DATA,
+432,striped,0,N/A,0.0,0,NO_DATA,
+426,woven,0,N/A,0.0,0,NO_DATA,
+411,sleeveless,0,N/A,0.0,0,NO_DATA,
+414,heathered,0,N/A,0.0,0,NO_DATA,
+407,crew,0,N/A,0.0,0,NO_DATA,
+408,longline,0,N/A,0.0,0,NO_DATA,
+434,dolman,0,N/A,0.0,0,NO_DATA,
+415,marled,0,N/A,0.0,0,NO_DATA,
+409,button-down,0,N/A,0.0,0,NO_DATA,
+421,raglan,0,N/A,0.0,0,NO_DATA,
+420,front,0,N/A,0.0,0,NO_DATA,
+419,buttoned,0,N/A,0.0,0,NO_DATA,
+418,denim,0,N/A,0.0,0,NO_DATA,
+417,boyfriend,0,N/A,0.0,0,NO_DATA,
+416,back,0,N/A,0.0,0,NO_DATA,
+410,side,0,N/A,0.0,0,NO_DATA,
+412,stretch,0,N/A,0.0,0,NO_DATA,
+433,adjustable,0,N/A,0.0,0,NO_DATA,
+267,cream-navy,0,N/A,0.0,0,NO_DATA,
+435,moto,0,N/A,0.0,0,NO_DATA,
+450,elasticized,0,N/A,0.0,0,NO_DATA,
+461,back,0,N/A,0.0,0,NO_DATA,
+460,adjustable,0,N/A,0.0,0,NO_DATA,
+459,adjustable,0,N/A,0.0,0,NO_DATA,
+458,front,0,N/A,0.0,0,NO_DATA,
+457,front,0,N/A,0.0,0,NO_DATA,
+456,concealed,0,N/A,0.0,0,NO_DATA,
+455,invisible,0,N/A,0.0,0,NO_DATA,
+454,concealed,0,N/A,0.0,0,NO_DATA,
+453,buttoned,0,N/A,0.0,0,NO_DATA,
+452,exposed,0,N/A,0.0,0,NO_DATA,
+405,knit,0,N/A,0.0,0,NO_DATA,
+451,chest,0,N/A,0.0,0,NO_DATA,
+449,slanted,0,N/A,0.0,0,NO_DATA,
+436,back,0,N/A,0.0,0,NO_DATA,
+448,high,0,N/A,0.0,0,NO_DATA,
+447,slim,0,N/A,0.0,0,NO_DATA,
+446,polka,0,N/A,0.0,0,NO_DATA,
+445,vented,0,N/A,0.0,0,NO_DATA,
+444,kangaroo,0,N/A,0.0,0,NO_DATA,
+443,boxy,0,N/A,0.0,0,NO_DATA,
+442,flap,0,N/A,0.0,0,NO_DATA,
+441,cap,0,N/A,0.0,0,NO_DATA,
+440,knit,0,N/A,0.0,0,NO_DATA,
+439,classic,0,N/A,0.0,0,NO_DATA,
+438,boxy,0,N/A,0.0,0,NO_DATA,
+437,stand,0,N/A,0.0,0,NO_DATA,
+406,short-sleeved,0,N/A,0.0,0,NO_DATA,
+365,short,0,N/A,0.0,0,NO_DATA,
+404,cami,0,N/A,0.0,0,NO_DATA,
+375,crew,0,N/A,0.0,0,NO_DATA,
+373,drawstring,0,N/A,0.0,0,NO_DATA,
+372,ribbed,0,N/A,0.0,0,NO_DATA,
+371,patch,0,N/A,0.0,0,NO_DATA,
+370,zip,0,N/A,0.0,0,NO_DATA,
+369,partially,0,N/A,0.0,0,NO_DATA,
+368,back,0,N/A,0.0,0,NO_DATA,
+367,front,0,N/A,0.0,0,NO_DATA,
+366,elasticized,0,N/A,0.0,0,NO_DATA,
+364,fully,0,N/A,0.0,0,NO_DATA,
+363,long,0,N/A,0.0,0,NO_DATA,
+362,round,0,N/A,0.0,0,NO_DATA,
+40,black-cream,0,N/A,0.0,0,NO_DATA,
+343,blue-white,0,N/A,0.0,0,NO_DATA,
+342,black-red,0,N/A,0.0,0,NO_DATA,
+341,black-heather,0,N/A,0.0,0,NO_DATA,
+64,black-white,0,N/A,0.0,0,NO_DATA,
+328,denim,0,N/A,0.0,0,NO_DATA,
+319,taupe,0,N/A,0.0,0,NO_DATA,
+318,navy-white,0,N/A,0.0,0,NO_DATA,
+302,blue-cream,0,N/A,0.0,0,NO_DATA,
+163,heather,0,N/A,0.0,0,NO_DATA,
+201,burgundy,0,N/A,0.0,0,NO_DATA,
+281,blush,0,N/A,0.0,0,NO_DATA,
+239,olive,0,N/A,0.0,0,NO_DATA,
+250,navy,0,N/A,0.0,0,NO_DATA,
+374,crop,0,N/A,0.0,0,NO_DATA,
+376,basic,0,N/A,0.0,0,NO_DATA,
+403,sleeveless,0,N/A,0.0,0,NO_DATA,
+377,3/4,0,N/A,0.0,0,NO_DATA,
+402,ribbed,0,N/A,0.0,0,NO_DATA,
+401,slub,0,N/A,0.0,0,NO_DATA,
+400,spaghetti,0,N/A,0.0,0,NO_DATA,
+399,pencil,0,N/A,0.0,0,NO_DATA,
+398,woven,0,N/A,0.0,0,NO_DATA,
+397,slant,0,N/A,0.0,0,NO_DATA,
+396,welt,0,N/A,0.0,0,NO_DATA,
+395,french,0,N/A,0.0,0,NO_DATA,
+394,adjustable,0,N/A,0.0,0,NO_DATA,
+393,scoop,0,N/A,0.0,0,NO_DATA,
+392,maxi,0,N/A,0.0,0,NO_DATA,
+391,floral,0,N/A,0.0,0,NO_DATA,
+390,skinny,0,N/A,0.0,0,NO_DATA,
+389,relaxed,0,N/A,0.0,0,NO_DATA,
+388,muscle,0,N/A,0.0,0,NO_DATA,
+387,chest,0,N/A,0.0,0,NO_DATA,
+386,exposed,0,N/A,0.0,0,NO_DATA,
+385,elasticized,0,N/A,0.0,0,NO_DATA,
+384,chest,0,N/A,0.0,0,NO_DATA,
+383,buttoned,0,N/A,0.0,0,NO_DATA,
+382,side,0,N/A,0.0,0,NO_DATA,
+381,buttoned,0,N/A,0.0,0,NO_DATA,
+380,faux,0,N/A,0.0,0,NO_DATA,
+379,open,0,N/A,0.0,0,NO_DATA,
+378,keyhole,0,N/A,0.0,0,NO_DATA,
+462,invisible,0,N/A,0.0,0,NO_DATA,
